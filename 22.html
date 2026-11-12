@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Выразительность: задание 22 ЕГЭ</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%231B2A55'/%3E%3Ctext x='32' y='51' text-anchor='middle' font-family='Georgia,Times New Roman,serif' font-size='42' font-weight='700' fill='%23FAFBFD'%3E%D0%90%3C/text%3E%3Crect x='34' y='3' width='5.5' height='15' rx='2' fill='%23FF5A6E' transform='rotate%2838 36.7 10.5%29'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400;1,7..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAFBFD; --grid:#E6ECF6; --ink:#1B2A55; --muted:#5E6A8A; --red:#C8243A;
+  --green:#1E7A4A; --line:#C9D4E6; --soft:#EEF2F9; --sel:#DCE6F7;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#10151F; --grid:#18202E; --ink:#E4E9F6; --muted:#97A2BE; --red:#FF6E7F;
+    --green:#5FD08F; --line:#2C3850; --soft:#182131; --sel:#22304A; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#10151F; --grid:#18202E; --ink:#E4E9F6; --muted:#97A2BE; --red:#FF6E7F;
+  --green:#5FD08F; --line:#2C3850; --soft:#182131; --sel:#22304A; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{
+  margin:0;min-height:100%;background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;color:var(--ink);
+  font:16px/1.5 "Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+.wrap{max-width:660px;margin:0 auto;padding:20px 18px 48px}
+header h1{font-family:Literata,Georgia,serif;font-weight:600;font-size:clamp(2rem,7.5vw,2.8rem);line-height:1.1;margin:8px 0 4px}
+.sub{color:var(--muted);margin:0 0 14px;font-size:.95rem}
+.prog{display:flex;align-items:center;gap:12px;font-size:.9rem;color:var(--muted)}
+.bar{flex:1;height:6px;background:var(--soft);border-radius:3px;overflow:hidden;border:1px solid var(--line)}
+.bar i{display:block;height:100%;width:0;background:var(--red);transition:width .4s}
+.warn{border:1px solid var(--red);border-radius:10px;padding:10px 14px;margin:16px 0 0;font-size:.92rem;background:var(--paper)}
+nav{display:flex;gap:4px;margin:20px 0 18px;border-bottom:2px solid var(--line)}
+nav button{font:inherit;font-weight:500;background:none;border:0;color:var(--muted);padding:10px 12px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
+nav button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--red)}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--red);outline-offset:2px;border-radius:4px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:20px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{font:inherit;font-size:.88rem;white-space:nowrap;cursor:pointer;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.frag{
+  font-family:Literata,Georgia,serif;font-size:clamp(1.15rem,4.6vw,1.4rem);line-height:1.55;
+  background:var(--paper);border-left:3px solid var(--ink);padding:12px 16px;margin:0 0 6px
+}
+.frag b.m{font-weight:600}
+.frag u.m{font-weight:600;text-decoration-thickness:2px;text-underline-offset:3px}
+.q{color:var(--muted);font-size:.92rem;margin:14px 0 10px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{
+  font:inherit;text-align:left;cursor:pointer;background:var(--paper);color:var(--ink);
+  border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-height:52px
+}
+.opt:hover{border-color:var(--muted)}
+.opt.right{border:2px solid var(--green);color:var(--green);font-weight:600}
+.opt.wrong{border:2px solid var(--red);color:var(--red);text-decoration:line-through}
+.opt:disabled{cursor:default}
+.fb{margin-top:16px}
+.verdict{font-weight:600;margin:0 0 6px}
+.verdict.ok{color:var(--green)} .verdict.no{color:var(--red)}
+.expl{margin:0 0 6px}
+.expl b{font-weight:600}
+.small{color:var(--muted);font-size:.92rem;margin:0 0 14px}
+.btn{font:inherit;font-weight:600;cursor:pointer;border-radius:10px;padding:12px 22px;background:var(--ink);color:var(--paper);border:0}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line);font-weight:500}
+.stats{display:flex;justify-content:center;gap:22px;color:var(--muted);font-size:.88rem;margin-top:26px;flex-wrap:wrap}
+.stats b{color:var(--ink);font-weight:600}
+.empty{color:var(--muted);padding:40px 0;text-align:center}
+/* ЕГЭ */
+.task{font-size:.98rem;margin:0 0 14px}
+.terms{columns:2;column-gap:18px;margin:0 0 20px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--paper);font-size:.95rem}
+.terms div{break-inside:avoid;padding:2px 0}
+.terms span{display:inline-block;width:1.4em;font-weight:600}
+.exitem{margin:0 0 18px}
+.exhead{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}
+.letter{font-family:Literata,Georgia,serif;font-weight:600;font-size:1.2rem}
+.digits{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;margin-top:6px}
+.dg{font:inherit;font-weight:600;cursor:pointer;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 0;min-height:40px}
+.dg[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.dg.used{color:var(--muted);border-style:dashed}
+.dg.right{background:var(--green);border-color:var(--green);color:var(--paper)}
+.dg.wrong{background:var(--red);border-color:var(--red);color:var(--paper)}
+.dg:disabled{cursor:default}
+.exnote{font-size:.92rem;margin:6px 0 0}
+.answer{margin:0 0 6px;font-size:1.05rem}
+.answer b{font-family:Literata,Georgia,serif;font-size:1.3rem;color:var(--red);letter-spacing:.08em}
+/* Теория */
+.search{font:inherit;width:100%;padding:11px 14px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);margin-bottom:16px}
+details.rules{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:10px;background:var(--paper)}
+details.rules summary{cursor:pointer;font-weight:600}
+details.rules ol{padding-left:1.2em;margin:10px 0 4px}
+details.rules li{margin:6px 0}
+h2{font-family:Literata,Georgia,serif;font-weight:600;font-size:1.3rem;margin:28px 0 6px}
+.term{padding:14px 0;border-bottom:1px solid var(--line)}
+.term h3{font-family:Literata,Georgia,serif;font-weight:600;font-size:1.15rem;margin:0 0 4px;display:flex;align-items:center;gap:8px}
+.term p{margin:4px 0;font-size:.95rem}
+.term .lbl{font-weight:600}
+.term .ex{font-family:Literata,Georgia,serif;font-size:1rem;margin:8px 0 0;padding-left:12px;border-left:2px solid var(--line)}
+.dot{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--line);flex:none}
+.dot.l{border-color:var(--red)} .dot.k{background:var(--green);border-color:var(--green)}
+.save{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:26px;background:var(--paper)}
+.save p{margin:0 0 10px;font-size:.92rem;color:var(--muted)}
+.save .btns{display:flex;gap:8px;flex-wrap:wrap}
+.msg{font-size:.9rem;margin:10px 0 0;color:var(--green)}
+.foot{margin-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:.85rem}
+.back{display:inline-block;color:var(--muted);text-decoration:none;font-size:.92rem;margin:4px 0 6px;padding:4px 0}
+.back:hover{color:var(--ink)}
+#achToast{position:fixed;left:0;right:0;bottom:0;padding:0 16px calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;z-index:50}
+.ach-t{display:flex;gap:12px;align-items:center;max-width:420px;width:100%;background:var(--ink);color:var(--paper);border-radius:12px;padding:12px 16px;box-shadow:0 8px 28px rgba(0,0,0,.28);animation:achIn .4s ease-out;transition:opacity .4s,transform .4s}
+.ach-t b{font-weight:600}.ach-t small{opacity:.85}
+.ach-e{font-size:1.9rem;line-height:1}
+.ach-t.out{opacity:0;transform:translateY(12px)}
+@keyframes achIn{from{opacity:0;transform:translateY(18px) scale(.96)}}
+.achlink{float:right;color:var(--muted);text-decoration:none;font-size:.92rem;padding:4px 0;margin:4px 0 6px}
+.achlink:hover{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.ach-t{animation:none;transition:none}}
+.credit{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem;text-align:center}
+.credit a{color:var(--ink);font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
+.credit a:hover{border-bottom-color:var(--red)}
+.logo{position:relative;display:inline-grid;place-items:center;width:58px;height:58px;border-radius:15px;background:var(--ink);color:var(--paper);font-family:Literata,Georgia,serif;font-weight:600;font-size:36px;line-height:1;padding-top:6px;flex:none;text-decoration:none}
+.logo::after{content:"";position:absolute;left:54%;top:5px;width:5px;height:15px;border-radius:2px;background:var(--red);transform:rotate(38deg) scaleY(1);transform-origin:50% 100%}
+.logo.sm{width:26px;height:26px;border-radius:7px;font-size:16px;padding-top:3px}
+.logo.sm::after{top:2px;width:2.5px;height:7px;border-radius:1px}
+.logo.anim::after{transform:rotate(38deg) scaleY(0);animation:logoPen .35s ease-out .25s forwards}
+@keyframes logoPen{to{transform:rotate(38deg) scaleY(1)}}
+@media (prefers-reduced-motion:reduce){.logo.anim::after{animation:none;transform:rotate(38deg) scaleY(1)}}
+[hidden]{display:none!important}
+@media (max-width:420px){.opts{grid-template-columns:1fr}.terms{columns:1}}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="./" style="display:inline-flex;align-items:center;gap:8px"><span class="logo sm" aria-hidden="true">А</span>Все тренажёры</a>
+    <a class="achlink" href="./#ach">🏅 Достижения</a>
+    <h1>Средства выразительности</h1>
+    <p class="sub">Задание 22 ЕГЭ по русскому. Все 23 термина из навигатора ФИПИ 2026.</p>
+    <div class="prog"><span id="progTxt">Освоено 0</span><div class="bar"><i id="progBar"></i></div></div>
+    <p class="warn" id="inapp" hidden>Сайт открыт внутри приложения, и прогресс здесь может пропасть. Откройте ссылку в Safari или Chrome: меню «⋯» → «Открыть в браузере».</p>
+  </header>
+
+  <nav role="tablist">
+    <button role="tab" id="t-train" aria-selected="true">Тренажёр</button>
+    <button role="tab" id="t-exam" aria-selected="false">Как на ЕГЭ</button>
+    <button role="tab" id="t-theory" aria-selected="false">Теория</button>
+  </nav>
+
+  <section id="p-train">
+    <div class="chips" id="chips"></div>
+    <div id="stage"></div>
+    <div class="stats">
+      <span>Серия <b id="streak">0</b></span>
+      <span>Сегодня верно <b id="today">0 из 0</b></span>
+    </div>
+  </section>
+
+  <section id="p-exam" hidden>
+    <p class="task">Установите соответствие между фрагментами и средствами выразительности: к каждому фрагменту подберите номер из списка. Цифры в ответе не повторяются.</p>
+    <div class="terms" id="terms"></div>
+    <div id="exList"></div>
+    <div id="exFb"></div>
+    <button class="btn" id="exBtn">Проверить</button>
+    <div class="stats"><span>Набрано баллов <b id="exStat">0 из 0</b></span></div>
+  </section>
+
+  <section id="p-theory" hidden>
+    <input class="search" id="q" type="search" placeholder="Найти термин" aria-label="Найти термин">
+    <details class="rules">
+      <summary>Как решать задание 22</summary>
+      <ol>
+        <li>Ответ — пять цифр без пробелов, по порядку фрагментов А, Б, В, Г, Д. Цифры не повторяются.</li>
+        <li>Выделенные слова или буквы — подсказка: анализируйте именно их. Если выделения нет, смотрите на весь фрагмент.</li>
+        <li>Аллитерация, ассонанс и метонимия всегда выделены. Если буквы не выделены, это не аллитерация и не ассонанс.</li>
+        <li>Во фрагменте бывает несколько средств. Если два фрагмента подходят к одному термину, ищите во втором другое средство из списка.</li>
+        <li>Во фразеологизме ищите средство, на котором он построен: «до седьмого пота» — гипербола, «кот наплакал» — литота.</li>
+        <li>Без ошибок — 2 балла, одна или две ошибки — 1 балл, больше — 0.</li>
+      </ol>
+    </details>
+    <div id="theory"></div>
+    <div class="save">
+      <p>Прогресс хранится на этом устройстве. Чтобы не потерять его или перенести на другой телефон, скопируйте код и сохраните, например, в заметках.</p>
+      <div class="btns">
+        <button class="btn" id="exportBtn">Скопировать код прогресса</button>
+        <button class="btn ghost" id="importBtn">Восстановить по коду</button>
+      </div>
+      <p class="msg" id="saveMsg" hidden></p>
+    </div>
+    <div class="foot">
+      <span>Термины и правила: «Навигатор самостоятельной подготовки к ЕГЭ-2026», ФИПИ.</span>
+      <button class="btn ghost" id="reset">Сбросить прогресс</button>
+    </div>
+  </section>
+  <p class="credit">Автор тренажёров — <a href="https://t.me/clwyxi" target="_blank" rel="noopener">@clwyxi</a> в Telegram</p>
+</div>
+
+<script>
+/* ===== Достижения (общий модуль для всех страниц) ===== */
+const ACH=(()=>{
+  const K='ege-ach-v1';
+  const L=[
+    {id:'a4_1',g:'Задание 4',e:'🎯',t:'Первый удар',d:'Дать первый верный ответ в тренажёре ударений',f:(s,c)=>(c.ok4||0)>=1},
+    {id:'a4_10',g:'Задание 4',e:'🎂',t:'Не тортЫ, а тОрты',d:'Выучить 10 слов',f:s=>s.s4>=10},
+    {id:'a4_50',g:'Задание 4',e:'🛠️',t:'Ударник орфоэпического труда',d:'Выучить 50 слов',f:s=>s.s4>=50},
+    {id:'a4_100',g:'Задание 4',e:'🥊',t:'Сто ударов — ни одного синяка',d:'Выучить 100 слов',f:s=>s.s4>=100},
+    {id:'a4_all',g:'Задание 4',e:'📖',t:'Ходячий словник',d:'Выучить все 219 слов',f:s=>s.s4>=219},
+    {id:'a4_st',g:'Задание 4',e:'📞',t:'ЗвонИт, а не звОнит',d:'20 верных ответов подряд',f:(s,c)=>(c.best4||0)>=20},
+    {id:'a4_ex',g:'Задание 4',e:'🍀',t:'Четвёртый — не лишний',d:'Решить без ошибок 10 заданий «как на ЕГЭ»',f:(s,c)=>(c.ex4||0)>=10},
+    {id:'a5_1',g:'Задание 5',e:'🧥',t:'Надел, а не одел',d:'Дать первый верный ответ в тренажёре паронимов',f:(s,c)=>(c.ok5||0)>=1},
+    {id:'a5_25',g:'Задание 5',e:'🎩',t:'Дипломат, а не дипломант',d:'Освоить 25 словосочетаний',f:s=>s.s5>=25},
+    {id:'a5_100',g:'Задание 5',e:'📵',t:'Абонент вне зоны ошибок',d:'Освоить 100 словосочетаний',f:s=>s.s5>=100},
+    {id:'a5_all',g:'Задание 5',e:'💥',t:'Эффектно и эффективно',d:'Освоить все словосочетания',f:s=>s.s5>=s.t5&&s.t5>0},
+    {id:'a5_st',g:'Задание 5',e:'😇',t:'Ни одного проступка',d:'15 верных ответов подряд',f:(s,c)=>(c.best5||0)>=15},
+    {id:'a5_ex',g:'Задание 5',e:'✍️',t:'Исправитель паронимов',d:'Решить верно 10 заданий «как на ЕГЭ»',f:(s,c)=>(c.ex5||0)>=10},
+    {id:'a9_1',g:'Задание 9',e:'🔤',t:'Буква в яблочко',d:'Дать первый верный ответ в тренажёре корней',f:(s,c)=>(c.ok9||0)>=1},
+    {id:'a9_25',g:'Задание 9',e:'☀️',t:'ЗагОрел, но не сгорел',d:'Освоить 25 слов',f:s=>s.s9>=25},
+    {id:'a9_100',g:'Задание 9',e:'🌱',t:'Растение без ростка сомнений',d:'Освоить 100 слов',f:s=>s.s9>=100},
+    {id:'a9_all',g:'Задание 9',e:'🌳',t:'Корень зла найден',d:'Освоить все слова тренажёра',f:s=>s.s9>=s.t9&&s.t9>0},
+    {id:'a9_st',g:'Задание 9',e:'🦘',t:'Скачок без ошибок',d:'15 верных ответов подряд',f:(s,c)=>(c.best9||0)>=15},
+    {id:'a9_ex',g:'Задание 9',e:'🎯',t:'Одна и та же буква',d:'Решить верно 10 заданий «как на ЕГЭ»',f:(s,c)=>(c.ex9||0)>=10},
+    {id:'a22_1',g:'Задание 22',e:'🌟',t:'Первая метафора',d:'Дать первый верный ответ в тренажёре выразительности',f:(s,c)=>(c.ok22||0)>=1},
+    {id:'a22_10',g:'Задание 22',e:'🥾',t:'Тропинка',d:'Освоить 10 примеров',f:s=>s.s22>=10},
+    {id:'a22_50',g:'Задание 22',e:'🎭',t:'Мильон терзаний позади',d:'Освоить 50 примеров',f:s=>s.s22>=50},
+    {id:'a22_all',g:'Задание 22',e:'🪶',t:'Сам себе Пушкин',d:'Освоить все 108 примеров',f:s=>s.s22>=108},
+    {id:'a22_st',g:'Задание 22',e:'🔁',t:'Анафора! Анафора! Анафора!',d:'15 верных ответов подряд',f:(s,c)=>(c.best22||0)>=15},
+    {id:'a22_ex',g:'Задание 22',e:'✌️',t:'Два балла из двух',d:'Решить «как на ЕГЭ» без единой ошибки',f:(s,c)=>(c.ex22||0)>=1},
+    {id:'g_all',g:'Весь сайт',e:'🧰',t:'Многостаночник',d:'Освоить хотя бы по 10 в каждом тренажёре',f:s=>s.s4>=10&&s.s5>=10&&s.s9>=10&&s.s22>=10},
+    {id:'g_500',g:'Весь сайт',e:'🏃',t:'Марафонец',d:'Дать 500 ответов во всех тренажёрах',f:(s,c)=>(c.ans||0)>=500},
+    {id:'g_night',g:'Весь сайт',e:'🦉',t:'Сова-филолог',d:'Позаниматься после 23:00',f:(s,c)=>!!c.night,hidden:true},
+    {id:'g_morning',g:'Весь сайт',e:'🐦',t:'Ранняя пташка',d:'Позаниматься до 7 утра',f:(s,c)=>!!c.morning,hidden:true}
+  ];
+  function load(){try{const v=JSON.parse(localStorage.getItem(K));if(v&&v.u&&v.c)return v;}catch(e){}return {u:{},c:{}};}
+  function store(st){try{localStorage.setItem(K,JSON.stringify(st));}catch(e){}}
+  function cnt(key,need){try{const p=JSON.parse(localStorage.getItem(key)||'{}');return Object.values(p.w||{}).filter(x=>x.b>=need).length;}catch(e){return 0;}}
+  function stats(){
+    let t5=0,t9=0;try{t5=+(localStorage.getItem('paronimy-ege5-total')||0);t9=+(localStorage.getItem('korni-ege9-total')||0);}catch(e){}
+    return {s4:cnt('udarenie-ege-2026-v1',3),s22:cnt('vyrazitelnost-ege22-v1',2),s5:cnt('paronimy-ege5-v1',2),t5,s9:cnt('korni-ege9-v1',2),t9};
+  }
+  function check(st){const s=stats(),fresh=[];L.forEach(a=>{if(!st.u[a.id]&&a.f(s,st.c)){st.u[a.id]=Date.now();fresh.push(a);}});return fresh;}
+  function toast(a){
+    let w=document.getElementById('achToast');
+    if(!w){w=document.createElement('div');w.id='achToast';w.setAttribute('aria-live','polite');document.body.appendChild(w);}
+    const el=document.createElement('div');el.className='ach-t';
+    el.innerHTML=`<span class="ach-e" aria-hidden="true">${a.e}</span><span><b>Достижение: ${a.t}</b><br><small>${a.d}</small></span>`;
+    w.appendChild(el);
+    setTimeout(()=>el.classList.add('out'),4200);setTimeout(()=>el.remove(),4700);
+  }
+  function event(ev){
+    const st=load(),c=st.c,tr=ev.tr;
+    if(typeof ev.ok==='boolean'){
+      c.ans=(c.ans||0)+1;
+      if(ev.ok)c['ok'+tr]=(c['ok'+tr]||0)+1;
+      if((ev.streak||0)>(c['best'+tr]||0))c['best'+tr]=ev.streak;
+      const h=new Date().getHours();
+      if(h>=23||h<4)c.night=1;
+      if(h>=4&&h<7)c.morning=1;
+    }
+    if(ev.full)c['ex'+tr]=(c['ex'+tr]||0)+1;
+    const fresh=check(st);store(st);
+    fresh.forEach((a,i)=>setTimeout(()=>toast(a),i*2800));
+  }
+  function all(){const st=load();check(st);store(st);return L.map(a=>Object.assign({},a,{got:!!st.u[a.id],when:st.u[a.id]}));}
+  return {event,all};
+})();
+
+/* Термины: код|название|группа|определение|как узнать|не путать */
+const TERMS_RAW=`al|аллитерация|ph|Повтор одинаковых или похожих согласных звуков.|В задании выделены согласные буквы, и их много на коротком отрезке.|Ассонанс — повтор гласных.
+as|ассонанс|ph|Повтор одинаковых гласных звуков, чаще ударных.|В задании выделены гласные буквы.|Аллитерация — повтор согласных.
+ep|эпитет|lx|Образное определение: прилагательное, причастие, наречие или приложение, которое ярко характеризует предмет или действие.|Отвечает на вопрос «какой?» или «как?» и создаёт образ, а не просто называет признак.|«Деревянный стол» — не эпитет, а обычное определение.
+mf|метафора|lx|Перенос названия по сходству, скрытое сравнение.|Можно переделать в сравнение с «как»: «костёр рябины» → рябина горит, как костёр.|Если есть «как», «словно», «будто» — это сравнение. Если неживое ведёт себя как человек — олицетворение.
+mn|метонимия|lx|Перенос названия по смежности, по реальной связи: место вместо людей, автор вместо книг, посуда вместо еды.|Всегда выделена. Можно восстановить пропущенное: «весь город спал» → спали жители города.|В метафоре связь по сходству, в метонимии — по соседству.
+ol|олицетворение|lx|Неживому предмету, явлению или животному приписаны человеческие действия, чувства, мысли.|Природа или вещь «ведёт себя как человек»: ворчит, плачет, ночует, злится.|Олицетворение — особый вид метафоры. Если в списке есть оба термина, ищите, какой из них нужен другому фрагменту.
+gi|гипербола|lx|Явное, намеренное преувеличение.|«Сто раз», «море слёз», «до седьмого пота».|Литота — наоборот, преуменьшение.
+li|литота|lx|Явное, намеренное преуменьшение.|«С ноготок», «кот наплакал», «рукой подать».|Гипербола — преувеличение.
+sr|сравнение|lx|Прямое сопоставление одного предмета с другим.|Союзы как, словно, будто, точно; слова похож, подобно; творительный падеж («слёзы лились градом»); сравнительная степень.|Без сравнительного слова это метафора.
+pa|синтаксический параллелизм|sx|Одинаковое построение соседних предложений или их частей.|Конструкции можно записать друг под другом — члены предложения совпадут по порядку.|Анафора — повтор только начального слова. В параллелизме повторяется схема.
+pc|парцелляция|sx|Одно предложение разбито точкой на части.|После точки идёт «обрывок», который по смыслу и грамматике относится к предыдущему предложению.|Бессоюзие — пропуск союзов внутри предложения.
+vo|вопросно-ответная форма изложения|sx|Автор сам задаёт вопрос и сам на него отвечает.|Вопрос и сразу ответ на него.|Риторический вопрос остаётся без ответа.
+gr|градация|sx|Ряд из трёх и более слов или частей, значение которых нарастает или ослабевает.|Каждое следующее слово сильнее предыдущего: «шёл, бежал, летел».|Простое перечисление без нарастания — не градация.
+in|инверсия|sx|Непривычный порядок слов.|Определение после существительного («парус одинокий»), сказуемое перед подлежащим, дополнение в начале.|Проверьте, как фраза звучала бы при обычном порядке слов.
+lp|лексический повтор|sx|Повтор одного и того же слова.|Слово повторяется подряд или в разных местах, а не только в начале или только в конце конструкций.|Повтор в начале — анафора, в конце — эпифора.
+an|анафора|sx|Единоначатие: одинаковое начало строк, предложений или их частей.|Повторяется первое слово или слова.|Эпифора — повтор в конце.
+epf|эпифора|sx|Одинаковое окончание строк, предложений или их частей.|Повторяется последнее слово или слова.|Анафора — повтор в начале.
+at|антитеза|sx|Резкое противопоставление понятий, образов, состояний.|Антонимы или противопоставленные образы, часто с союзами а, но, однако.|Градация — нарастание, а не противопоставление.
+rv|риторический вопрос|sx|Вопрос, на который не ждут ответа. По сути это утверждение.|Ответ и так ясен: «Кто не мечтал о чуде?» значит «все мечтали».|Вопросно-ответная форма — когда ответ дан.
+rvo|риторическое восклицание|sx|Восклицание, в котором кроме интонации есть слова-усилители.|Восклицательный знак плюс «как», «что за», «пусть», «да», «о», «ах», «боже мой».|Если в восклицании обращаются к неживому или отсутствующему — проверьте риторическое обращение.
+rob|риторическое обращение|sx|Обращение к неодушевлённому, отсутствующему или воображаемому адресату.|Обращаются к шкафу, тучкам, Руси, свободе.|Обычное обращение к собеседнику — не риторическое.
+ms|многосоюзие|sx|Намеренный повтор сочинительного союза, обычно трижды и больше.|И… и… и…, ни… ни… ни…|Бессоюзие — союзов нет совсем.
+bs|бессоюзие|sx|Намеренный пропуск союзов в перечислении или сложном предложении.|Ряд через запятые без «и».|Многосоюзие — союзы повторяются.`;
+
+/* Примеры: код термина|текст|другие средства во фрагменте|пояснение
+   [[…]] — выделенные слова, {{…}} — выделенные буквы, « / » — новая строка */
+const EX_RAW=`al|{{Ш}}и{{п}}енье {{п}}енистых бокалов / И {{п}}унша {{п}}ламень голубой. (А.С. Пушкин)|ep,in|Повторяются согласные [п] и [ш] — слышно, как шипит напиток.
+al|Чуть слы{{ш}}но, бес{{ш}}умно, {{ш}}ур{{ш}}ат камы{{ш}}и. (К.Д. Бальмонт)|bs|Повтор [ш] передаёт шорох камышей.
+al|{{Гр}}ом {{гр}}охотал над городом, {{гр}}озно {{гр}}емел.||Повтор сочетания [гр] передаёт раскаты грома.
+al|{{В}}ечер. {{В}}зморье. {{В}}здохи {{в}}етра. (К.Д. Бальмонт)|pc,bs|Повтор [в] передаёт звук ветра.
+al|{{Ш}}ур{{ш}}али {{ш}}ины по {{ш}}оссе, {{ш}}елестел {{ш}}ёлк листвы.|mf|Повтор [ш] — шуршание шин и листьев.
+as|Б{{у}}ря на море и д{{у}}мы, / Много м{{у}}чительных д{{у}}м. (А.А. Фет)|lp|Повтор ударного [у] создаёт гул бури и тяжёлое настроение.
+as|Г{{у}}лко г{{у}}дит в тр{{у}}бе {{у}}гр{{ю}}мая вь{{ю}}га.|ep,ol|Повтор [у] передаёт гул вьюги.
+as|Зв{{о}}н и ст{{о}}н, и ш{{о}}рох в{{о}}лн.|bs|Повтор ударного [о] создаёт протяжное звучание.
+as|Л{{и}}лся л{{и}}вень, и в л{{и}}ствах бл{{и}}стали к{{и}}сти рябин.|mf|Повтор [и] создаёт звонкое, светлое звучание.
+ep|Ночевала тучка [[золотая]] / На груди утёса-великана. (М.Ю. Лермонтов)|ol,mf,in|«Золотая» — образное определение: тучка освещена солнцем.
+ep|Что ты [[жадно]] глядишь на дорогу / В стороне от весёлых подруг? (Н.А. Некрасов)|rv|Эпитет-наречие: «жадно» ярко характеризует действие.
+ep|Над городом стоял [[мглистый, тоскливый]] вечер.||Определения создают образ и настроение.
+ep|Мороз и солнце; день [[чудесный]]! (А.С. Пушкин)|in,rvo|«Чудесный» — образная оценка дня.
+ep|Она улыбнулась [[виноватой]] улыбкой.||«Виноватой» — образное определение: улыбка не может быть виновата.
+mf|Природой здесь нам суждено / В Европу [[прорубить окно]]. (А.С. Пушкин)|in|«Окно в Европу» — выход к морю, перенос по сходству функции.
+mf|В саду [[горит костёр]] рябины красной, / Но никого не может он согреть. (С.А. Есенин)|ep,in|Рябина похожа на костёр по цвету.
+mf|Над полем висело [[серое одеяло]] туч.|ep|Тучи похожи на одеяло: «одеяло туч» — скрытое сравнение.
+mf|Он [[утонул]] в воспоминаниях.||Воспоминания похожи на воду, в которой можно утонуть.
+mf|После переезда дела у семьи пошли [[в гору]].||Фразеологизм построен на метафоре: успех похож на подъём.
+mn|Когда мы вернулись, [[весь посёлок]] уже спал.||Посёлок вместо жителей посёлка — перенос по смежности.
+mn|Она знает наизусть [[всего Пушкина]].||Автор вместо его произведений.
+mn|Голодный гость съел [[целую тарелку]].||Посуда вместо её содержимого.
+mn|На стройке не хватает [[рабочих рук]].||Часть вместо целого: руки вместо рабочих (синекдоха).
+mn|[[Зал]] аплодировал стоя.||Помещение вместо людей в нём.
+mn|Все [[флаги]] в гости будут к нам. (А.С. Пушкин)||Флаги вместо кораблей разных стран.
+mn|Мы все глядим в [[Наполеоны]]. (А.С. Пушкин)||Имя собственное вместо нарицательного: «Наполеоны» — великие люди.
+ol|[[Ночевала]] тучка золотая / На груди утёса-великана. (М.Ю. Лермонтов)|ep,mf,in|Тучка «ночует», как человек.
+ol|Старый чайник [[ворчал]] на плите.|ep|Чайник ворчит, как человек.
+ol|Белая берёза / Под моим окном / [[Принакрылась]] снегом, / Точно серебром. (С.А. Есенин)|sr,ep,in|Берёза укрывается, как человек.
+ol|Ветер [[тоскливо выл]] в трубе и [[жаловался]] на одиночество.|ep|Ветер тоскует и жалуется, как человек.
+ol|Зима недаром [[злится]], / Прошла её пора. (Ф.И. Тютчев)|in|Зима злится, как человек.
+gi|Да, мочи нет: [[мильон терзаний]] / Груди от дружеских тисков. (А.С. Грибоедов)||«Мильон терзаний» — явное преувеличение.
+gi|Я [[сто раз]] тебе говорил!|rvo|«Сто раз» — преувеличение.
+gi|[[Редкая птица долетит до середины Днепра]]. (Н.В. Гоголь)||Ширина реки сильно преувеличена.
+gi|Мы работали [[до седьмого пота]].||Фразеологизм построен на преувеличении.
+gi|[[В сто сорок солнц]] закат пылал. (В.В. Маяковский)|mf,in|Яркость заката преувеличена.
+li|В больших рукавицах… а сам [[с ноготок]]! (Н.А. Некрасов)|at|Рост мальчика сильно преуменьшен.
+li|До деревни было [[рукой подать]].||Расстояние преуменьшено.
+li|Котёнок был [[не больше напёрстка]].||Размер преуменьшен.
+li|Денег у него [[кот наплакал]].||Фразеологизм построен на преуменьшении.
+li|Подожди [[полсекундочки]], я уже бегу!||Время намеренно преуменьшено.
+sr|Белая берёза / Под моим окном / Принакрылась снегом, / [[Точно серебром]]. (С.А. Есенин)|ol,ep|Снег сравнивается с серебром через «точно».
+sr|Её глаза были [[как два озера]].||Сравнительный союз «как».
+sr|Из перерубленной старой берёзы / [[Градом]] лилися прощальные слёзы. (Н.А. Некрасов)|ol,in,mf|Творительный сравнения: лились градом — как град.
+sr|[[Сильнее кошки]] зверя нет. (И.А. Крылов)|in|Сравнительная степень прилагательного.
+sr|Тополя у дороги [[похожи на часовых]].||Сравнение через слово «похожи».
+sr|После похода мы были [[голодные как волки]].||Фразеологизм построен на сравнении.
+pa|В синем небе звёзды блещут, / В синем море волны хлещут. (А.С. Пушкин)|an,lp,ep|Строки построены одинаково: обстоятельство, подлежащее, сказуемое.
+pa|Шумит ветер в поле, плачет девица в тереме.|ol|Две части построены по одной схеме.
+pa|Утром мы спорили о книгах, вечером мы говорили о жизни.|lp,at|Обе части: время, «мы», глагол, «о» + существительное.
+pa|Придёт ли он завтра? Не знаю. Позвонит ли сегодня? Вряд ли.|vo,lp|Вопрос и короткий ответ повторяются по одной схеме.
+pc|Он вернулся. [[Поздно ночью. Один.]]|bs|Обстоятельство и определение отделены точками от предложения.
+pc|Я долго не мог уснуть. [[Потому что думал о ней.]]||Придаточная часть отделена точкой.
+pc|Мы купили цветы. [[И торт. И подарок для бабушки.]]|ms|Однородные члены отделены точками.
+pc|Она ушла. [[Не попрощавшись.]]||Деепричастие отделено точкой.
+pc|Когда избавит нас творец / От шляпок их! чепцов! и шпилек! и булавок! (А.С. Грибоедов)|ms,rvo|Однородные члены разделены восклицательными знаками.
+vo|Что же спасает человека в трудную минуту? Конечно, вера в себя и поддержка близких.||Автор задаёт вопрос и сам отвечает.
+vo|Можно ли прожить без книг? Можно. Но жизнь эта будет беднее.|pc|Вопрос и тут же ответ.
+vo|Почему мы так любим осень? Наверное, потому, что она учит прощаться.|ol|Вопрос и ответ автора.
+gr|Не жалею, не зову, не плачу. (С.А. Есенин)|an,lp,bs|Чувство нарастает от слова к слову.
+gr|Он шёл, бежал, летел ей навстречу.|bs|Скорость нарастает: шёл — бежал — летел.
+gr|Это была не просто ошибка — это была беда, катастрофа.|lp|Ошибка — беда — катастрофа: значение усиливается.
+gr|Ни на день, ни на час, ни на минуту не забывал он о доме.|an,ms,lp|День — час — минута: отрезок времени сужается.
+in|Белеет [[парус одинокий]] / В тумане моря голубом! (М.Ю. Лермонтов)|ep|Определения стоят после существительных, сказуемое — перед подлежащим.
+in|За окном шумел [[дождь осенний]].||Определение после существительного.
+in|[[Странную историю]] рассказал нам сосед.||Дополнение вынесено в начало предложения.
+in|Подобно птичке перелётной, / И он, изгнанник беззаботный, / Гнезда надёжного не знал. (А.С. Пушкин)|sr,ep|Определения после существительных, дополнение перед сказуемым.
+lp|Ждать, [[ждать]] и ещё раз [[ждать]] — вот что нам оставалось.||Слово повторяется подряд для усиления.
+lp|Далеко-[[далеко]], за синими горами, жил старый мастер.|ep|Повтор слова усиливает значение.
+lp|Это ещё не дорога. [[Дорога]] начнётся за лесом.||Слово повторяется на стыке предложений.
+lp|Вокруг лес, [[лес]], бесконечный [[лес]].|ep|Повтор передаёт, как много леса вокруг.
+an|Люблю тебя, Петра творенье, / Люблю твой строгий, стройный вид. (А.С. Пушкин)|rob,ep,in,lp|Строки начинаются одинаково: «Люблю».
+an|Каждый хочет быть счастливым, каждый мечтает о любви.|pa,lp|Части предложения начинаются со слова «каждый».
+an|Ради детей мы строим, ради детей мы учимся, ради детей мы живём.|pa,lp,gr|Части начинаются одинаково: «ради детей».
+an|Клянусь я первым днём творенья, / Клянусь его последним днём. (М.Ю. Лермонтов)|at,pa,lp,in|Строки начинаются с «Клянусь».
+epf|В огромном городе моём — ночь. / Из дома сонного иду — прочь. / И люди думают: жена, дочь, — / А я запомнила одно: ночь. (М.И. Цветаева)|ep,in,lp|Первая и последняя строки кончаются словом «ночь».
+epf|Солнце будет светить всегда. Мы будем вместе всегда.|pa,lp|Предложения кончаются словом «всегда».
+epf|Я не знаю, где он. Мама не знает, где он. Никто не знает, где он.|pa,lp|Предложения кончаются одинаково: «где он».
+epf|Милый друг, и в этом тихом доме / Лихорадка бьёт меня. / Не найти мне места в тихом доме / Возле мирного огня! (А.А. Блок)|ep,mf,lp,rvo|Строки кончаются одинаково: «в тихом доме».
+at|Ты и убогая, / Ты и обильная, / Ты и могучая, / Ты и бессильная, / Матушка Русь! (Н.А. Некрасов)|an,pa,rob,lp,ms|Противопоставлены антонимы: убогая — обильная, могучая — бессильная.
+at|Они сошлись. Волна и камень, / Стихи и проза, лёд и пламень / Не столь различны меж собой. (А.С. Пушкин)||Противопоставлены противоположные образы.
+at|Богатый и бедный, сильный и слабый — все равны перед законом.||Антонимы: богатый — бедный, сильный — слабый.
+at|Я царь — я раб — я червь — я бог! (Г.Р. Державин)|an,lp,bs|Противопоставлены «царь» и «раб», «червь» и «бог».
+at|Злое слово ранит, доброе — лечит.|pa|Противопоставлены злое и доброе слово.
+rv|Что ищет он в стране далёкой? / Что кинул он в краю родном? (М.Ю. Лермонтов)|pa,an,at,lp,in|Вопросы задаются без ожидания ответа.
+rv|И какой же русский не любит быстрой езды? (Н.В. Гоголь)||Ответ очевиден: любой русский любит.
+rv|Кто из нас не мечтал в детстве о чуде?||Значит: все мечтали.
+rv|На кого не действует новизна? (А.П. Чехов)||Значит: новизна действует на всех.
+rv|Разве можно забыть такое?||Значит: забыть нельзя.
+rvo|Да здравствует солнце, да скроется тьма! (А.С. Пушкин)|at,pa|Восклицание с частицей «да».
+rvo|О, если б голос мой умел сердца тревожить! (А.С. Пушкин)|in|Восклицание с междометием «о».
+rvo|Как прекрасен этот мир!||Восклицание с частицей «как».
+rvo|Боже мой, сколько же лет прошло!||Восклицание с междометием «боже мой».
+rvo|Пусть всегда будет мир!||Восклицание с частицей «пусть».
+rob|Тучки небесные, вечные странники! (М.Ю. Лермонтов)|ep,mf|Обращение к тучкам — неодушевлённому адресату.
+rob|Дорогой, многоуважаемый шкаф! (А.П. Чехов)|ep,rvo|Обращение к вещи.
+rob|Прощай, свободная стихия! (А.С. Пушкин)|ep,rvo|Обращение к морю.
+rob|Русь моя, жизнь моя, вместе ль нам маяться? (А.А. Блок)|rv,lp|Обращение к родине.
+rob|Родная улица, ты помнишь моё детство.|ol|Обращение к улице.
+ms|Вот уже и мостовая кончилась, и шлагбаум, и город назади, и ничего нет, и опять в дороге. (Н.В. Гоголь)||Союз «и» повторяется много раз.
+ms|И дождь, и ветер, и холод не остановили нас.||Союз «и» повторяется трижды.
+ms|Ни звука, ни шороха, ни огонька не было вокруг.|an|Союз «ни» повторяется трижды.
+ms|И для него воскресли вновь / И божество, и вдохновенье, / И жизнь, и слёзы, и любовь. (А.С. Пушкин)||Союз «и» повторяется в каждом члене ряда.
+bs|Швед, русский — колет, рубит, режет. (А.С. Пушкин)||Однородные члены без союзов.
+bs|Ночь, улица, фонарь, аптека, / Бессмысленный и тусклый свет. (А.А. Блок)|ep|Перечисление без союзов.
+bs|День вечереет, небо опустело. (И.А. Бунин)||Части сложного предложения без союза.
+bs|Мелькают дома, поля, леса, реки.||Перечисление без союзов.
+bs|Бой барабанный, клики, скрежет, / Гром пушек, топот, ржанье, стон. (А.С. Пушкин)|al,in|Однородные члены без союзов.`;
+
+const GROUPS={ph:'Фонетика',lx:'Лексика',sx:'Синтаксис'};
+const CONF={al:['as'],as:['al'],ep:['mf','in'],mf:['ol','sr','mn'],mn:['mf'],ol:['mf'],gi:['li'],li:['gi'],sr:['mf'],pa:['an'],pc:['bs'],vo:['rv'],gr:['bs'],in:['ep'],lp:['an','epf'],an:['epf','lp'],epf:['an','lp'],at:['gr'],rv:['vo','rvo'],rvo:['rv','rob'],rob:['rvo'],ms:['bs'],bs:['ms']};
+
+const T={};const TL=[];
+TERMS_RAW.trim().split('\n').forEach(l=>{const [c,name,g,def,how,not]=l.split('|');T[c]={c,name,g,def,how,not};TL.push(c);});
+const E=EX_RAW.trim().split('\n').map(l=>{
+  const [t,text,also,note]=l.split('|');
+  return {id:t+':'+text.slice(0,40),t,text,also:(also||'').split(',').filter(Boolean),note:note||''};
+});
+
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function fmt(s){
+  return esc(s).replace(/\{\{(.+?)\}\}/g,'<u class="m">$1</u>').replace(/\[\[(.+?)\]\]/g,'<b class="m"><i>$1</i></b>').replace(/ \/ /g,'<br>');
+}
+const cap=s=>s[0].toUpperCase()+s.slice(1);
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+/* Хранилище */
+const KEY='vyrazitelnost-ege22-v1';
+let S={w:{},ex:{pts:0,max:0}};
+try{const r=localStorage.getItem(KEY);if(r){const p=JSON.parse(r);S.w=p.w||{};S.ex=p.ex||{pts:0,max:0};}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function st(x){return S.w[x.id]||(S.w[x.id]={b:0,ok:0,bad:0});}
+function mark(x,ok){const s=st(x);if(ok){s.ok++;s.b=Math.min(5,s.b+1);}else{s.bad++;s.b=0;}save();updateProg();}
+function known(){return E.filter(x=>{const s=S.w[x.id];return s&&s.b>=2;}).length;}
+function updateProg(){
+  const k=known();
+  document.getElementById('progTxt').textContent=`Освоено ${k} из ${E.length} примеров`;
+  document.getElementById('progBar').style.width=(k/E.length*100)+'%';
+}
+function termState(c){
+  const xs=E.filter(x=>x.t===c);let seen=0,good=0,bad=0;
+  xs.forEach(x=>{const s=S.w[x.id];if(s){seen++;if(s.b>=2)good++;if(s.bad>0&&s.b<2)bad++;}});
+  if(good===xs.length)return 'k';if(bad||seen)return bad?'l':'';return '';
+}
+
+const WT=[10,6,3,2,1,.5];
+function pickFrom(list,exclude){
+  let cand=list.filter(x=>!exclude.includes(x.id));if(!cand.length)cand=list;
+  let tot=0;const ws=cand.map(x=>{const s=S.w[x.id];const v=s?WT[s.b]:8;tot+=v;return v;});
+  let r=Math.random()*tot;for(let i=0;i<cand.length;i++){r-=ws[i];if(r<=0)return cand[i];}
+  return cand[cand.length-1];
+}
+
+/* Табы */
+const tabs=['train','exam','theory'];
+tabs.forEach(t=>{document.getElementById('t-'+t).onclick=()=>{
+  tabs.forEach(x=>{document.getElementById('t-'+x).setAttribute('aria-selected',x===t);document.getElementById('p-'+x).hidden=x!==t;});
+  if(t==='theory')renderTheory();
+  if(t==='exam'&&!exItems.length)newExam();
+};});
+
+/* Тренажёр */
+let filt='all',cur=null,answered=false,recent=[],queue=[],streak=0,todayOk=0,todayAll=0;
+const FILTERS=[['all','Все'],['ph','Фонетика'],['lx','Лексика'],['sx','Синтаксис'],['bad','Мои ошибки']];
+function renderChips(){
+  document.getElementById('chips').innerHTML=FILTERS.map(([k,l])=>`<button class="chip" data-f="${k}" aria-pressed="${k===filt}">${l}</button>`).join('');
+  document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{filt=b.dataset.f;queue=[];recent=[];renderChips();nextCard();});
+}
+function pool(){
+  if(filt==='all')return E;
+  if(filt==='bad')return E.filter(x=>{const s=S.w[x.id];return s&&s.bad>0&&s.b<2;});
+  return E.filter(x=>T[x.t].g===filt);
+}
+function options(x){
+  const ban=new Set([x.t,...x.also]);
+  const opts=[x.t];
+  (CONF[x.t]||[]).forEach(c=>{if(!ban.has(c)&&opts.length<3){opts.push(c);ban.add(c);}});
+  const same=shuffle(TL.filter(c=>!ban.has(c)&&T[c].g===T[x.t].g));
+  const any=shuffle(TL.filter(c=>!ban.has(c)));
+  for(const c of [...same,...any]){if(opts.length>=4)break;if(!opts.includes(c))opts.push(c);}
+  return shuffle(opts);
+}
+function nextCard(){
+  queue.forEach(q=>q.d--);
+  const p=pool(),stage=document.getElementById('stage');
+  if(!p.length){stage.innerHTML='<p class="empty">Здесь появятся примеры, в которых вы ошибались. Пока их нет — потренируйтесь на всех примерах.</p>';return;}
+  const qi=queue.findIndex(q=>q.d<=0&&p.some(x=>x.id===q.id));
+  if(qi>=0){cur=E.find(x=>x.id===queue[qi].id);queue.splice(qi,1);}else cur=pickFrom(p,recent);
+  recent.push(cur.id);if(recent.length>10)recent.shift();
+  answered=false;
+  const opts=options(cur);
+  stage.innerHTML=`<div class="frag">${fmt(cur.text)}</div>
+    <p class="q">Какое средство выразительности использовано${/\[\[|\{\{/.test(cur.text)?' в выделенном фрагменте':''}?</p>
+    <div class="opts">${opts.map(c=>`<button class="opt" data-c="${c}">${cap(T[c].name)}</button>`).join('')}</div>
+    <div class="fb" id="fb"></div>`;
+  stage.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(b.dataset.c));
+}
+function answer(c){
+  if(answered)return;answered=true;
+  const ok=c===cur.t;
+  document.querySelectorAll('.opt').forEach(b=>{b.disabled=true;if(b.dataset.c===cur.t)b.classList.add('right');else if(b.dataset.c===c)b.classList.add('wrong');});
+  mark(cur,ok);todayAll++;
+  if(ok){todayOk++;streak++;}else{streak=0;queue.push({id:cur.id,d:4});}
+  ACH.event({tr:'22',ok,streak});
+  document.getElementById('streak').textContent=streak;
+  document.getElementById('today').textContent=`${todayOk} из ${todayAll}`;
+  const term=T[cur.t];
+  const also=cur.also.length?`<p class="small">Во фрагменте есть и другие средства: ${cur.also.map(a=>T[a].name).join(', ')}. На ЕГЭ выбор подсказывает список терминов и выделение.</p>`:'';
+  const wrongNote=!ok?`<p class="expl"><b>Почему не ${T[c].name}:</b> ${esc(T[c].def.charAt(0).toLowerCase()+T[c].def.slice(1))}</p>`:'';
+  document.getElementById('fb').innerHTML=`
+    <p class="verdict ${ok?'ok':'no'}">${ok?'Верно: ':'Это '}${term.name}${ok?'':'. Пример вернётся через четыре карточки'}</p>
+    <p class="expl">${esc(cur.note)}</p>
+    <p class="expl"><b>Как узнать:</b> ${esc(term.how)}</p>
+    ${wrongNote}${also}
+    <button class="btn" id="next">Следующий пример</button>`;
+  const n=document.getElementById('next');n.onclick=nextCard;n.focus({preventScroll:true});
+}
+
+/* Как на ЕГЭ */
+const LET=['А','Б','В','Г','Д'];
+let exItems=[],exTerms=[],exChecked=false;
+function newExam(){
+  for(let attempt=0;attempt<200;attempt++){
+    const chosen=[],used=new Set(),blocked=new Set();
+    let tries=0;
+    while(chosen.length<5&&tries<100){
+      tries++;
+      const x=pickFrom(E,chosen.map(c=>c.id));
+      if(used.has(x.t)||blocked.has(x.t))continue;
+      if(x.also.some(a=>used.has(a)))continue;
+      chosen.push(x);used.add(x.t);x.also.forEach(a=>blocked.add(a));
+    }
+    if(chosen.length<5)continue;
+    const distract=shuffle(TL.filter(c=>!used.has(c)&&!blocked.has(c))).slice(0,4);
+    if(distract.length<4)continue;
+    exTerms=shuffle([...used,...distract]);
+    exItems=chosen.map(x=>({x,sel:null,right:exTerms.indexOf(x.t)+1}));
+    break;
+  }
+  exChecked=false;
+  document.getElementById('exFb').innerHTML='';
+  document.getElementById('exBtn').textContent='Проверить';
+  renderExam();
+}
+function renderExam(){
+  document.getElementById('terms').innerHTML=exTerms.map((c,i)=>`<div><span>${i+1}</span>${T[c].name}</div>`).join('');
+  const taken=exItems.map(i=>i.sel).filter(Boolean);
+  document.getElementById('exList').innerHTML=exItems.map((it,k)=>{
+    const digits=[1,2,3,4,5,6,7,8,9].map(d=>{
+      let cls='';
+      if(exChecked){if(d===it.right)cls='right';else if(d===it.sel)cls='wrong';}
+      else if(d!==it.sel&&taken.includes(d))cls='used';
+      return `<button class="dg ${cls}" data-k="${k}" data-d="${d}" aria-pressed="${it.sel===d}" aria-label="Фрагмент ${LET[k]}: ${d}"${exChecked?' disabled':''}>${d}</button>`;
+    }).join('');
+    const note=exChecked&&it.sel!==it.right?`<p class="exnote">Здесь ${T[it.x.t].name}. ${esc(it.x.note)}</p>`:'';
+    return `<div class="exitem"><div class="exhead"><span class="letter">${LET[k]})</span></div>
+      <div class="frag">${fmt(it.x.text)}</div><div class="digits">${digits}</div>${note}</div>`;
+  }).join('');
+  document.querySelectorAll('.dg').forEach(b=>b.onclick=()=>{
+    if(exChecked)return;
+    const it=exItems[+b.dataset.k],d=+b.dataset.d;
+    it.sel=it.sel===d?null:d;renderExam();
+  });
+  document.getElementById('exStat').textContent=`${S.ex.pts} из ${S.ex.max}`;
+}
+document.getElementById('exBtn').onclick=()=>{
+  if(exChecked){newExam();window.scrollTo({top:document.getElementById('p-exam').offsetTop-20});return;}
+  if(exItems.some(i=>!i.sel)){
+    document.getElementById('exFb').innerHTML='<p class="small">Выберите цифру для каждого фрагмента, от А до Д.</p>';return;
+  }
+  exChecked=true;
+  const errors=exItems.filter(i=>i.sel!==i.right).length;
+  const pts=errors===0?2:(errors<=2?1:0);
+  S.ex.pts+=pts;S.ex.max+=2;
+  ACH.event({tr:'22',full:pts===2});
+  exItems.forEach(i=>{if(i.sel!==i.right)mark(i.x,false);});
+  save();
+  const ans=exItems.map(i=>i.right).join('');
+  const word=pts===1?'балл':'балла';
+  document.getElementById('exFb').innerHTML=`
+    <p class="verdict ${pts===2?'ok':'no'}">${pts} ${pts===0?'баллов':word} из 2${errors?`: ошибок — ${errors}`:''}</p>
+    <p class="answer">Ответ: <b>${ans}</b></p>`;
+  document.getElementById('exBtn').textContent='Следующее задание';
+  renderExam();
+};
+
+/* Теория */
+function renderTheory(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  let html='';
+  for(const g of Object.keys(GROUPS)){
+    const list=TL.filter(c=>T[c].g===g&&(!q||T[c].name.includes(q)));
+    if(!list.length)continue;
+    html+=`<h2>${GROUPS[g]}</h2>`+list.map(c=>{
+      const t=T[c];const exs=E.filter(x=>x.t===c).slice(0,2);
+      return `<div class="term"><h3><i class="dot ${termState(c)}"></i>${cap(t.name)}</h3>
+        <p>${esc(t.def)}</p>
+        <p><span class="lbl">Как узнать:</span> ${esc(t.how)}</p>
+        <p><span class="lbl">Не путать:</span> ${esc(t.not)}</p>
+        ${exs.map(x=>`<div class="ex">${fmt(x.text)}</div>`).join('')}</div>`;
+    }).join('');
+  }
+  document.getElementById('theory').innerHTML=html||'<p class="empty">Такого термина нет в задании 22.</p>';
+}
+document.getElementById('q').oninput=renderTheory;
+document.getElementById('reset').onclick=()=>{
+  if(!confirm('Сбросить весь прогресс на этом устройстве?'))return;
+  S={w:{},ex:{pts:0,max:0}};save();updateProg();renderTheory();
+  streak=todayOk=todayAll=0;queue=[];
+  document.getElementById('streak').textContent='0';
+  document.getElementById('today').textContent='0 из 0';
+  document.getElementById('exStat').textContent='0 из 0';
+};
+
+/* Сохранность прогресса */
+try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(e){}
+if(/Telegram|VKClient|vkontakte|Instagram|FBAN|FBAV|OKApp|MailRuApp/i.test(navigator.userAgent))document.getElementById('inapp').hidden=false;
+function showMsg(t,bad){const m=document.getElementById('saveMsg');m.textContent=t;m.style.color=bad?'var(--red)':'var(--green)';m.hidden=false;}
+document.getElementById('exportBtn').onclick=async()=>{
+  const w=[];E.forEach((x,i)=>{const s=S.w[x.id];if(s&&(s.ok||s.bad))w.push([i,s.b,s.ok,s.bad]);});
+  const code='VY1-'+btoa(JSON.stringify({w,e:[S.ex.pts,S.ex.max]}));
+  try{await navigator.clipboard.writeText(code);showMsg('Код скопирован. Вставьте его в заметки или отправьте себе.');}
+  catch(e){prompt('Скопируйте этот код и сохраните его:',code);}
+};
+document.getElementById('importBtn').onclick=()=>{
+  const code=(prompt('Вставьте код прогресса:')||'').trim();if(!code)return;
+  try{
+    if(!code.startsWith('VY1-'))throw 0;
+    const d=JSON.parse(atob(code.slice(4)));const w={};
+    d.w.forEach(([i,b,ok,bad])=>{if(E[i])w[E[i].id]={b,ok,bad};});
+    S={w,ex:{pts:d.e[0]||0,max:d.e[1]||0}};save();updateProg();renderTheory();
+    document.getElementById('exStat').textContent=`${S.ex.pts} из ${S.ex.max}`;
+    showMsg('Прогресс восстановлен.');
+  }catch(e){showMsg('Код не подошёл. Скопируйте его целиком, начиная с VY1-.',true);}
+};
+
+renderChips();updateProg();nextCard();
+</script>
+</body>
+</html>
