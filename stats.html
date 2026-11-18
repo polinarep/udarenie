@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Моя статистика</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%231B2A55'/%3E%3Ctext x='32' y='51' text-anchor='middle' font-family='Georgia,Times New Roman,serif' font-size='42' font-weight='700' fill='%23FAFBFD'%3E%D0%90%3C/text%3E%3Crect x='34' y='3' width='5.5' height='15' rx='2' fill='%23FF5A6E' transform='rotate%2838 36.7 10.5%29'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAFBFD; --grid:#E6ECF6; --ink:#1B2A55; --muted:#5E6A8A; --red:#C8243A;
+  --line:#C9D4E6; --soft:#EEF2F9; --gold:#B8860B;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#10151F; --grid:#18202E; --ink:#E4E9F6; --muted:#97A2BE; --red:#FF6E7F;
+    --line:#2C3850; --soft:#182131; --gold:#E7B94A; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#10151F; --grid:#18202E; --ink:#E4E9F6; --muted:#97A2BE; --red:#FF6E7F;
+  --line:#2C3850; --soft:#182131; --gold:#E7B94A; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{
+  margin:0;min-height:100%;background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;color:var(--ink);
+  font:16px/1.5 "Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+.wrap{max-width:660px;margin:0 auto;padding:28px 18px 48px}
+h1{font-family:Literata,Georgia,serif;font-weight:600;font-size:clamp(2rem,8vw,2.9rem);line-height:1.1;margin:0 0 10px}
+.lead{color:var(--muted);margin:0 0 20px;max-width:34em}
+.jump{display:inline-block;color:var(--ink);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--paper);font-size:.95rem}
+.jump b{font-weight:600}
+h2{font-family:Literata,Georgia,serif;font-weight:600;font-size:1.25rem;margin:30px 0 10px;color:var(--muted)}
+a.card{
+  display:grid;grid-template-columns:auto 1fr;gap:4px 18px;align-items:start;
+  text-decoration:none;color:var(--ink);background:var(--paper);
+  border:1px solid var(--line);border-left:4px solid var(--red);border-radius:6px 12px 12px 6px;
+  padding:16px 18px;margin:0 0 12px
+}
+a.card:hover{border-color:var(--ink);border-left-color:var(--red)}
+a:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.num{grid-row:span 3;font-family:Literata,Georgia,serif;font-weight:600;font-size:2.6rem;line-height:1;color:var(--red);min-width:1.4em;text-align:center}
+.num small{display:block;font-family:"Golos Text",system-ui,sans-serif;font-size:.7rem;font-weight:500;color:var(--muted);margin-top:4px}
+.title{font-weight:600;font-size:1.1rem}
+.desc{color:var(--muted);font-size:.93rem}
+.prog{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);margin-top:6px}
+.bar{flex:1;height:5px;background:var(--soft);border-radius:3px;overflow:hidden;border:1px solid var(--line)}
+.bar i{display:block;height:100%;width:0;background:var(--red)}
+#ach{margin-top:44px;padding-top:6px;border-top:2px solid var(--line)}
+#ach h2.top{font-size:1.6rem;color:var(--ink);margin:18px 0 4px}
+.achsum{color:var(--muted);margin:0 0 4px}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.badge{border:1px solid var(--line);border-radius:12px;padding:14px 12px;background:var(--paper);text-align:center}
+.badge .e{font-size:2.2rem;line-height:1.1;display:block;margin-bottom:6px}
+.badge .t{font-weight:600;font-size:.95rem;line-height:1.3}
+.badge .d{color:var(--muted);font-size:.82rem;margin-top:4px;line-height:1.35}
+.badge.got{border-color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+.badge.got .when{color:var(--gold);font-size:.78rem;margin-top:6px}
+.badge.lock .e{filter:grayscale(1);opacity:.35}
+.badge.lock .t{color:var(--muted)}
+.about{display:flex;gap:18px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:0 0 22px}
+.about img{width:96px;height:96px;border-radius:50%;object-fit:cover;flex:none;border:3px solid var(--paper);box-shadow:0 0 0 2px var(--red)}
+.about h2{margin:0 0 4px;color:var(--ink);font-size:1.15rem}
+.about p{margin:0 0 10px;font-size:.95rem}
+.tg{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:600;font-size:.92rem;color:var(--paper);background:var(--ink);border-radius:999px;padding:7px 14px}
+.tg:hover{background:var(--red)}
+@media (max-width:420px){.about{flex-direction:column;text-align:center}}
+.credit{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem;text-align:center}
+.credit a{color:var(--ink);font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
+.credit a:hover{border-bottom-color:var(--red)}
+.logo{position:relative;display:inline-grid;place-items:center;width:58px;height:58px;border-radius:15px;background:var(--ink);color:var(--paper);font-family:Literata,Georgia,serif;font-weight:600;font-size:36px;line-height:1;padding-top:6px;flex:none;text-decoration:none}
+.logo::after{content:"";position:absolute;left:54%;top:5px;width:5px;height:15px;border-radius:2px;background:var(--red);transform:rotate(38deg) scaleY(1);transform-origin:50% 100%}
+.logo.sm{width:26px;height:26px;border-radius:7px;font-size:16px;padding-top:3px}
+.logo.sm::after{top:2px;width:2.5px;height:7px;border-radius:1px}
+.logo.anim::after{transform:rotate(38deg) scaleY(0);animation:logoPen .35s ease-out .25s forwards}
+@keyframes logoPen{to{transform:rotate(38deg) scaleY(1)}}
+@media (prefers-reduced-motion:reduce){.logo.anim::after{animation:none;transform:rotate(38deg) scaleY(1)}}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:5px;margin:4px 0 6px}
+.seg button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:10px 8px;background:none;color:var(--muted);font-weight:600;font-size:1.15rem;line-height:1.2}
+.seg button small{display:block;font-weight:400;font-size:.8rem}
+.seg button[aria-selected="true"]{background:var(--paper);color:var(--ink);box-shadow:0 1px 3px rgba(27,42,85,.15)}
+.seg button[aria-selected="true"] small{color:var(--muted)}
+.seg button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.examlead{color:var(--muted);font-size:.93rem;margin:10px 0 0}
+.toprow{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:.92rem;padding:4px 0}
+.back:hover{color:var(--ink)}
+.small{color:var(--muted);font-size:.9rem}
+.small a{color:var(--ink)}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0 6px}
+.tile{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 10px}
+.tile b{display:block;font-family:Literata,Georgia,serif;font-weight:600;font-size:1.7rem;line-height:1.1;color:var(--ink)}
+.tile span{display:block;color:var(--muted);font-size:.82rem;line-height:1.3;margin-top:4px}
+@media (max-width:520px){.tiles{grid-template-columns:repeat(2,1fr)}}
+.chart{display:grid;grid-template-columns:repeat(14,1fr);gap:4px;align-items:end;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 10px 8px}
+.col{display:flex;flex-direction:column;align-items:center;min-width:0}
+.col .v{font-size:.68rem;color:var(--muted);height:1.1em}
+.bar2{height:120px;width:100%;display:flex;align-items:flex-end;justify-content:center}
+.bar2 i{display:flex;flex-direction:column;justify-content:flex-end;width:72%;max-width:22px;min-height:2px;background:var(--red);opacity:.35;border-radius:4px 4px 1px 1px;position:relative}
+.bar2 i{opacity:1;background:color-mix(in srgb,var(--red) 35%,var(--paper))}
+.bar2 em{display:block;width:100%;background:var(--ink);border-radius:4px 4px 1px 1px}
+.col .d{font-size:.72rem;color:var(--ink);margin-top:4px}
+.col .w{font-size:.62rem;color:var(--muted)}
+.col.today .d{font-weight:600;color:var(--red)}
+.key{display:inline-flex;align-items:center;gap:5px;margin-right:12px}
+.key i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.key .k1{background:var(--ink)} .key .k2{background:color-mix(in srgb,var(--red) 35%,var(--paper))}
+a.tr{display:block;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:0 0 10px}
+a.tr:hover{border-color:var(--ink)}
+.trh{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.trh b{font-weight:600}
+.tag{font-size:.72rem;font-weight:600;border-radius:5px;padding:1px 6px;color:var(--paper)}
+.tag.oge{background:var(--red)} .tag.ege{background:var(--ink)}
+.go{margin-left:auto;font-size:.85rem;color:var(--muted)}
+.meta{display:flex;gap:16px;flex-wrap:wrap;font-size:.86rem;color:var(--muted);margin-top:8px}
+.meta b{color:var(--ink);font-weight:600}
+.hard{list-style:none;counter-reset:h;margin:8px 0 0;padding:0}
+.hard li{counter-increment:h;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 0 9px 2em;border-bottom:1px solid var(--line);position:relative}
+.hard li::before{content:counter(h);position:absolute;left:0;color:var(--muted);font-size:.85rem;font-weight:600}
+.hard li.none{padding-left:0;color:var(--muted);font-size:.92rem}
+.hard li.none::before{content:none}
+.hw{font-family:Literata,Georgia,serif;font-size:1.05rem;min-width:0;overflow-wrap:anywhere}
+.hm{flex:none;font-size:.8rem;color:var(--muted);text-align:right}
+.hm a{color:var(--ink)}
+.foot{margin-top:34px;color:var(--muted);font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="./"><span class="logo sm" aria-hidden="true">А</span>Все тренажёры</a>
+  <h1 style="margin-top:12px">Моя статистика</h1>
+  <p class="achsum">Всё, что вы решали в тренажёрах на этом устройстве. Чтобы перенести статистику на другой телефон, используйте код прогресса внизу страницы каждого тренажёра.</p>
+
+  <div class="tiles" id="tiles"></div>
+
+  <h2>Активность за две недели</h2>
+  <div class="chart" id="chart" role="img"></div>
+  <p class="small" id="chartNote"></p>
+
+  <h2>По тренажёрам</h2>
+  <div id="trList"></div>
+
+  <h2>Трудные места</h2>
+  <p class="small" style="margin-top:-2px">Слова и примеры, в которых больше всего ошибок и которые ещё не выучены. Они чаще попадаются в режиме «Мои ошибки».</p>
+  <ol class="hard" id="hard"></ol>
+  <p class="credit">Автор тренажёров — <a href="https://t.me/clwyxi" target="_blank" rel="noopener">@clwyxi</a> в Telegram</p>
+</div>
+<script>
+/* ===== Достижения (общий модуль для всех страниц) ===== */
+const ACH=(()=>{
+  const K='ege-ach-v1';
+  const L=[
+    {id:'a4_1',g:'ЕГЭ · задание 4',e:'🎯',t:'Первый удар',d:'Дать первый верный ответ в тренажёре ударений',f:(s,c)=>(c.ok4||0)>=1},
+    {id:'a4_10',g:'ЕГЭ · задание 4',e:'🎂',t:'Не тортЫ, а тОрты',d:'Выучить 10 слов',f:s=>s.s4>=10},
+    {id:'a4_50',g:'ЕГЭ · задание 4',e:'🛠️',t:'Ударник орфоэпического труда',d:'Выучить 50 слов',f:s=>s.s4>=50},
+    {id:'a4_100',g:'ЕГЭ · задание 4',e:'🥊',t:'Сто ударов — ни одного синяка',d:'Выучить 100 слов',f:s=>s.s4>=100},
+    {id:'a4_all',g:'ЕГЭ · задание 4',e:'📖',t:'Ходячий словник',d:'Выучить все 219 слов',f:s=>s.s4>=219},
+    {id:'a4_st',g:'ЕГЭ · задание 4',e:'📞',t:'ЗвонИт, а не звОнит',d:'20 верных ответов подряд',f:(s,c)=>(c.best4||0)>=20},
+    {id:'a4_ex',g:'ЕГЭ · задание 4',e:'🍀',t:'Четвёртый — не лишний',d:'Решить без ошибок 10 заданий «как на ЕГЭ»',f:(s,c)=>(c.ex4||0)>=10},
+    {id:'a5_1',g:'ЕГЭ · задание 5',e:'🧥',t:'Надел, а не одел',d:'Дать первый верный ответ в тренажёре паронимов',f:(s,c)=>(c.ok5||0)>=1},
+    {id:'a5_25',g:'ЕГЭ · задание 5',e:'🎩',t:'Дипломат, а не дипломант',d:'Освоить 25 словосочетаний',f:s=>s.s5>=25},
+    {id:'a5_100',g:'ЕГЭ · задание 5',e:'📵',t:'Абонент вне зоны ошибок',d:'Освоить 100 словосочетаний',f:s=>s.s5>=100},
+    {id:'a5_all',g:'ЕГЭ · задание 5',e:'💥',t:'Эффектно и эффективно',d:'Освоить все словосочетания',f:s=>s.s5>=s.t5&&s.t5>0},
+    {id:'a5_st',g:'ЕГЭ · задание 5',e:'😇',t:'Ни одного проступка',d:'15 верных ответов подряд',f:(s,c)=>(c.best5||0)>=15},
+    {id:'a5_ex',g:'ЕГЭ · задание 5',e:'✍️',t:'Исправитель паронимов',d:'Решить верно 10 заданий «как на ЕГЭ»',f:(s,c)=>(c.ex5||0)>=10},
+    {id:'a9_1',g:'ЕГЭ · задание 9',e:'🔤',t:'Буква в яблочко',d:'Дать первый верный ответ в тренажёре корней',f:(s,c)=>(c.ok9||0)>=1},
+    {id:'a9_25',g:'ЕГЭ · задание 9',e:'☀️',t:'ЗагОрел, но не сгорел',d:'Освоить 25 слов',f:s=>s.s9>=25},
+    {id:'a9_100',g:'ЕГЭ · задание 9',e:'🌱',t:'Растение без ростка сомнений',d:'Освоить 100 слов',f:s=>s.s9>=100},
+    {id:'a9_all',g:'ЕГЭ · задание 9',e:'🌳',t:'Корень зла найден',d:'Освоить все слова тренажёра',f:s=>s.s9>=s.t9&&s.t9>0},
+    {id:'a9_st',g:'ЕГЭ · задание 9',e:'🦘',t:'Скачок без ошибок',d:'15 верных ответов подряд',f:(s,c)=>(c.best9||0)>=15},
+    {id:'a9_ex',g:'ЕГЭ · задание 9',e:'🎯',t:'Одна и та же буква',d:'Решить верно 10 заданий «как на ЕГЭ»',f:(s,c)=>(c.ex9||0)>=10},
+    {id:'a22_1',g:'ЕГЭ · задание 22',e:'🌟',t:'Первая метафора',d:'Дать первый верный ответ в тренажёре выразительности',f:(s,c)=>(c.ok22||0)>=1},
+    {id:'a22_10',g:'ЕГЭ · задание 22',e:'🥾',t:'Тропинка',d:'Освоить 10 примеров',f:s=>s.s22>=10},
+    {id:'a22_50',g:'ЕГЭ · задание 22',e:'🎭',t:'Мильон терзаний позади',d:'Освоить 50 примеров',f:s=>s.s22>=50},
+    {id:'a22_all',g:'ЕГЭ · задание 22',e:'🪶',t:'Сам себе Пушкин',d:'Освоить все 108 примеров',f:s=>s.s22>=108},
+    {id:'a22_st',g:'ЕГЭ · задание 22',e:'🔁',t:'Анафора! Анафора! Анафора!',d:'15 верных ответов подряд',f:(s,c)=>(c.best22||0)>=15},
+    {id:'a22_ex',g:'ЕГЭ · задание 22',e:'✌️',t:'Два балла из двух',d:'Решить «как на ЕГЭ» без единой ошибки',f:(s,c)=>(c.ex22||0)>=1},
+    {id:'o6_1',g:'ОГЭ · задание 6',e:'🔍',t:'Объяснительная записка',d:'Дать первый верный ответ в тренажёре задания 6',f:(s,c)=>(c.oko6||0)>=1},
+    {id:'o6_50',g:'ОГЭ · задание 6',e:'⚖️',t:'Справедливый судья',d:'Освоить 50 утверждений',f:s=>s.so6>=50},
+    {id:'o6_all',g:'ОГЭ · задание 6',e:'📚',t:'Ходячий справочник',d:'Освоить все утверждения',f:s=>s.so6>=s.to6&&s.to6>0},
+    {id:'o6_st',g:'ОГЭ · задание 6',e:'🎬',t:'Не верю!',d:'15 верных ответов подряд',f:(s,c)=>(c.besto6||0)>=15},
+    {id:'o6_ex',g:'ОГЭ · задание 6',e:'📝',t:'Верное объяснение',d:'Решить верно 10 заданий «как на ОГЭ»',f:(s,c)=>(c.exo6||0)>=10},
+    {id:'o9_1',g:'ОГЭ · задание 9',e:'🐰',t:'Заячьи уши',d:'Сделать первое верное преобразование',f:(s,c)=>(c.oko9||0)>=1},
+    {id:'o9_25',g:'ОГЭ · задание 9',e:'🔗',t:'Связной',d:'Освоить 25 словосочетаний',f:s=>s.so9>=25},
+    {id:'o9_all',g:'ОГЭ · задание 9',e:'🪢',t:'Мастер связей',d:'Освоить все словосочетания',f:s=>s.so9>=s.to9&&s.to9>0},
+    {id:'o9_st',g:'ОГЭ · задание 9',e:'⛓️',t:'Согласен, управляю, примыкаю',d:'15 верных ответов подряд',f:(s,c)=>(c.besto9||0)>=15},
+    {id:'g_all',g:'Весь сайт',e:'🧰',t:'Многостаночник',d:'Освоить хотя бы по 10 в каждом тренажёре ЕГЭ',f:s=>s.s4>=10&&s.s5>=10&&s.s9>=10&&s.s22>=10},
+    {id:'g_oge',g:'Весь сайт',e:'🎓',t:'Девятый вал',d:'Освоить хотя бы по 10 в каждом тренажёре ОГЭ',f:s=>s.so6>=10&&s.so9>=10},
+    {id:'g_500',g:'Весь сайт',e:'🏃',t:'Марафонец',d:'Дать 500 ответов во всех тренажёрах',f:(s,c)=>(c.ans||0)>=500},
+    {id:'g_night',g:'Весь сайт',e:'🦉',t:'Сова-филолог',d:'Позаниматься после 23:00',f:(s,c)=>!!c.night,hidden:true},
+    {id:'g_morning',g:'Весь сайт',e:'🐦',t:'Ранняя пташка',d:'Позаниматься до 7 утра',f:(s,c)=>!!c.morning,hidden:true}
+  ];
+  function load(){try{const v=JSON.parse(localStorage.getItem(K));if(v&&v.u&&v.c)return v;}catch(e){}return {u:{},c:{}};}
+  function store(st){try{localStorage.setItem(K,JSON.stringify(st));}catch(e){}}
+  function cnt(key,need){try{const p=JSON.parse(localStorage.getItem(key)||'{}');return Object.values(p.w||{}).filter(x=>x.b>=need).length;}catch(e){return 0;}}
+  function tot(key){try{return +(localStorage.getItem(key)||0);}catch(e){return 0;}}
+  function stats(){
+    return {s4:cnt('udarenie-ege-2026-v1',3),s22:cnt('vyrazitelnost-ege22-v1',2),
+      s5:cnt('paronimy-ege5-v1',2),t5:tot('paronimy-ege5-total'),
+      s9:cnt('korni-ege9-v1',2),t9:tot('korni-ege9-total'),
+      so6:cnt('oge6-v1',2),to6:tot('oge6-total'),
+      so9:cnt('oge9-v1',2),to9:tot('oge9-total')};
+  }
+  function check(st){const s=stats(),fresh=[];L.forEach(a=>{if(!st.u[a.id]&&a.f(s,st.c)){st.u[a.id]=Date.now();fresh.push(a);}});return fresh;}
+  function toast(a){
+    let w=document.getElementById('achToast');
+    if(!w){w=document.createElement('div');w.id='achToast';w.setAttribute('aria-live','polite');document.body.appendChild(w);}
+    const el=document.createElement('div');el.className='ach-t';
+    el.innerHTML=`<span class="ach-e" aria-hidden="true">${a.e}</span><span><b>Достижение: ${a.t}</b><br><small>${a.d}</small></span>`;
+    w.appendChild(el);
+    setTimeout(()=>el.classList.add('out'),4200);setTimeout(()=>el.remove(),4700);
+  }
+  function event(ev){
+    const st=load(),c=st.c,tr=ev.tr;
+    if(typeof ev.ok==='boolean'){
+      c.ans=(c.ans||0)+1;
+      const d=new Date(),dk=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+      c.days=c.days||{};const dd=c.days[dk]||(c.days[dk]=[0,0,{}]);
+      dd[0]++;if(ev.ok)dd[1]++;dd[2][tr]=(dd[2][tr]||0)+1;
+      const ks=Object.keys(c.days).sort();while(ks.length>180)delete c.days[ks.shift()];
+      if(ev.ok)c['ok'+tr]=(c['ok'+tr]||0)+1;
+      if((ev.streak||0)>(c['best'+tr]||0))c['best'+tr]=ev.streak;
+      const h=new Date().getHours();
+      if(h>=23||h<4)c.night=1;
+      if(h>=4&&h<7)c.morning=1;
+    }
+    if(ev.full)c['ex'+tr]=(c['ex'+tr]||0)+1;
+    const fresh=check(st);store(st);
+    fresh.forEach((a,i)=>setTimeout(()=>toast(a),i*2800));
+  }
+  function all(){const st=load();check(st);store(st);return L.map(a=>Object.assign({},a,{got:!!st.u[a.id],when:st.u[a.id]}));}
+  function raw(){return load();}
+  return {event,all,raw};
+})();
+
+const TR=[
+  {k:'o6',ex:'ОГЭ',n:6,title:'Объясни написание',href:'oge6.html',key:'oge6-v1',need:2,totKey:'oge6-total',total:124,unit:'слов',label:id=>id},
+  {k:'o9',ex:'ОГЭ',n:9,title:'Виды связи',href:'oge9.html',key:'oge9-v1',need:2,totKey:'oge9-total',total:76,unit:'словосочетаний',label:id=>id.split('>')[0].replace(/\*/g,''),extra:'o9t'},
+  {k:'4',ex:'ЕГЭ',n:4,title:'Ударение',href:'4.html',key:'udarenie-ege-2026-v1',need:3,total:219,unit:'слов',label:id=>id.split('|')[0]},
+  {k:'5',ex:'ЕГЭ',n:5,title:'Паронимы',href:'5.html',key:'paronimy-ege5-v1',need:2,totKey:'paronimy-ege5-total',total:409,unit:'словосочетаний',label:id=>id.slice(id.indexOf(':')+1).replace(/\{(.+?)\/.+?\}/,'$1')},
+  {k:'9',ex:'ЕГЭ',n:9,title:'Гласные в корне',href:'9.html',key:'korni-ege9-v1',need:2,totKey:'korni-ege9-total',total:183,unit:'слов',label:id=>id},
+  {k:'22',ex:'ЕГЭ',n:22,title:'Средства выразительности',href:'22.html',key:'vyrazitelnost-ege22-v1',need:2,total:108,unit:'примеров',label:id=>id.slice(id.indexOf(':')+1).replace(/\[\[|\]\]|\{\{|\}\}/g,'').replace(/ \/ /g,' ')+'…'}
+];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function get(key){try{return JSON.parse(localStorage.getItem(key)||'{}')||{};}catch(e){return {};}}
+function num(key){try{return +(localStorage.getItem(key)||0);}catch(e){return 0;}}
+function plural(n,a,b,c){const m=n%10,h=n%100;return (m===1&&h!==11)?a:(m>=2&&m<=4&&(h<10||h>=20))?b:c;}
+const pct=(a,b)=>b?Math.round(a/b*100)+'%':'—';
+
+let allAns=0,allOk=0,allLearned=0;const hard=[];
+const rows=TR.map(t=>{
+  const d=get(t.key),w=d.w||{};const total=(t.totKey&&num(t.totKey))||t.total;
+  let ok=0,bad=0,learned=0;
+  for(const [id,s] of Object.entries(w)){ok+=s.ok||0;bad+=s.bad||0;if((s.b||0)>=t.need)learned++;else if(s.bad>0)hard.push({t,id,bad:s.bad,ok:s.ok||0});}
+  learned=Math.min(learned,total);
+  allAns+=ok+bad;allOk+=ok;allLearned+=learned;
+  let exam='';
+  if(t.k==='22'&&d.ex&&d.ex.max)exam=`${d.ex.pts} из ${d.ex.max} баллов`;
+  else if(d.ex&&d.ex.all)exam=`${d.ex.ok} из ${d.ex.all} без ошибок`;
+  else if(t.k==='o9'&&d.t&&d.t.all)exam=`тип связи: ${d.t.ok} из ${d.t.all}`;
+  return {t,ok,bad,learned,total,exam,ans:ok+bad};
+});
+
+/* Дни */
+const st=ACH.raw();const days=(st.c&&st.c.days)||{};
+const dkey=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+let streak=0;{const d=new Date();if(!(days[dkey(d)]||[0])[0])d.setDate(d.getDate()-1);while((days[dkey(d)]||[0])[0]>0){streak++;d.setDate(d.getDate()-1);}}
+const activeDays=Object.values(days).filter(v=>v[0]>0).length;
+
+const tiles=[
+  [allAns,plural(allAns,'ответ','ответа','ответов')+' всего'],
+  [pct(allOk,allAns),'верных ответов'],
+  [allLearned,'выучено '+plural(allLearned,'слово и пример','слова и примера','слов и примеров')],
+  [streak,plural(streak,'день','дня','дней')+' подряд']
+];
+document.getElementById('tiles').innerHTML=tiles.map(([v,l])=>`<div class="tile"><b>${v}</b><span>${l}</span></div>`).join('');
+
+/* График */
+const last=[];for(let i=13;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);last.push(d);}
+const vals=last.map(d=>days[dkey(d)]||[0,0]);
+const max=Math.max(10,...vals.map(v=>v[0]));
+const wd=['вс','пн','вт','ср','чт','пт','сб'];
+document.getElementById('chart').innerHTML=last.map((d,i)=>{const [a,o]=vals[i];
+  const h=a/max*100,ho=a?o/a*h:0;const today=i===13;
+  return `<div class="col${today?' today':''}" title="${d.toLocaleDateString('ru-RU',{day:'numeric',month:'long'})}: ${a} ${plural(a,'ответ','ответа','ответов')}, верно ${o}">
+    <span class="v">${a||''}</span><div class="bar2"><i style="height:${h}%"><em style="height:${a?o/a*100:0}%"></em></i></div><span class="d">${today?'сег.':d.getDate()}</span><span class="w">${wd[d.getDay()]}</span></div>`;}).join('');
+document.getElementById('chart').setAttribute('aria-label','Количество ответов по дням за последние две недели');
+const sum14=vals.reduce((s,v)=>s+v[0],0);
+document.getElementById('chartNote').innerHTML=sum14?`<span class="key"><i class="k1"></i>верно</span><span class="key"><i class="k2"></i>с ошибкой</span> За две недели: ${sum14} ${plural(sum14,'ответ','ответа','ответов')}, занятий в ${activeDays} ${plural(activeDays,'день','дня','дней')}.`:'Здесь появятся занятия по дням. Решите несколько заданий в любом тренажёре — и столбик за сегодня вырастет.';
+
+/* По тренажёрам */
+const started=rows.filter(r=>r.ans>0),idle=rows.filter(r=>r.ans===0);
+document.getElementById('trList').innerHTML=started.map(r=>`
+  <a class="tr" href="${r.t.href}">
+    <div class="trh"><span class="tag ${r.t.ex==='ОГЭ'?'oge':'ege'}">${r.t.ex}</span><b>${r.t.n}. ${esc(r.t.title)}</b><span class="go">Тренироваться</span></div>
+    <div class="prog"><span>Выучено ${r.learned} из ${r.total} ${r.t.unit}</span><div class="bar"><i style="width:${r.learned/r.total*100}%"></i></div></div>
+    <div class="meta"><span>Ответов <b>${r.ans}</b></span><span>Точность <b>${pct(r.ok,r.ans)}</b></span>${r.exam?`<span>Формат экзамена <b>${r.exam}</b></span>`:''}</div>
+  </a>`).join('')+(idle.length?`<p class="small">${started.length?'Ещё не начаты':'Вы пока не решали ни одного тренажёра. Ещё не начаты'}: ${idle.map(r=>`<a href="${r.t.href}">${r.t.ex} ${r.t.n} «${esc(r.t.title)}»</a>`).join(', ')}.</p>`:'');
+
+/* Трудные места */
+hard.sort((a,b)=>(b.bad-b.ok*.5)-(a.bad-a.ok*.5));
+document.getElementById('hard').innerHTML=hard.length?hard.slice(0,10).map(h=>`<li><span class="hw">${esc(h.t.label(h.id))}</span><span class="hm"><a href="${h.t.href}">${h.t.ex} ${h.t.n}</a> · ошибок: ${h.bad}</span></li>`).join(''):'<li class="none">Пока нет. Когда ошибётесь в слове, оно появится здесь, пока вы его не выучите.</li>';
+</script>
+</body>
+</html>

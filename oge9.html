@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Виды связи в словосочетании: задание 9 ОГЭ</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%231B2A55'/%3E%3Ctext x='32' y='51' text-anchor='middle' font-family='Georgia,Times New Roman,serif' font-size='42' font-weight='700' fill='%23FAFBFD'%3E%D0%90%3C/text%3E%3Crect x='34' y='3' width='5.5' height='15' rx='2' fill='%23FF5A6E' transform='rotate%2838 36.7 10.5%29'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAFBFD; --grid:#E6ECF6; --ink:#1B2A55; --muted:#5E6A8A; --red:#C8243A;
+  --green:#1E7A4A; --line:#C9D4E6; --soft:#EEF2F9; --sel:#DCE6F7;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#10151F; --grid:#18202E; --ink:#E4E9F6; --muted:#97A2BE; --red:#FF6E7F;
+    --green:#5FD08F; --line:#2C3850; --soft:#182131; --sel:#22304A; color-scheme:dark;
+  }
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{
+  margin:0;min-height:100%;background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;color:var(--ink);
+  font:16px/1.5 "Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+.wrap{max-width:660px;margin:0 auto;padding:20px 18px 48px}
+.back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:.92rem;margin:4px 0 6px;padding:4px 0}
+.back:hover{color:var(--ink)}
+.exam-tag{display:inline-block;font-size:.8rem;font-weight:600;color:var(--paper);background:var(--red);border-radius:6px;padding:2px 8px;vertical-align:middle;margin-right:6px}
+header h1{font-family:Literata,Georgia,serif;font-weight:600;font-size:clamp(1.9rem,7.4vw,2.7rem);line-height:1.1;margin:10px 0 4px}
+.sub{color:var(--muted);margin:0 0 14px;font-size:.95rem}
+.prog{display:flex;align-items:center;gap:12px;font-size:.9rem;color:var(--muted)}
+.bar{flex:1;height:6px;background:var(--soft);border-radius:3px;overflow:hidden;border:1px solid var(--line)}
+.bar i{display:block;height:100%;width:0;background:var(--red);transition:width .4s}
+.warn{border:1px solid var(--red);border-radius:10px;padding:10px 14px;margin:16px 0 0;font-size:.92rem;background:var(--paper)}
+nav{display:flex;gap:4px;margin:20px 0 18px;border-bottom:2px solid var(--line)}
+nav button{font:inherit;font-weight:500;background:none;border:0;color:var(--muted);padding:10px 12px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
+nav button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--red)}
+button:focus-visible,input:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--red);outline-offset:2px;border-radius:4px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:20px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{font:inherit;font-size:.88rem;white-space:nowrap;cursor:pointer;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.task9{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px;font-size:1.02rem;line-height:1.55}
+.task9 .ph{font-family:Literata,Georgia,serif;font-weight:600;font-size:1.25rem}
+.kind{display:inline-block;font-weight:600;border-radius:6px;padding:0 6px;background:var(--soft);border:1px solid var(--line)}
+.kind.to{border-color:var(--red);color:var(--red)}
+.ansrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.ans{font:inherit;font-size:1.1rem;flex:1;min-width:200px;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.ans.okv{border-color:var(--green)} .ans.badv{border-color:var(--red)}
+.hint{font:inherit;font-size:.9rem;background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;padding:6px 0;margin-top:6px}
+.hintbox{font-size:.94rem;color:var(--ink);background:var(--soft);border-radius:10px;padding:10px 12px;margin-top:8px}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.opt{font:inherit;font-weight:600;cursor:pointer;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px 8px}
+.opt:hover{border-color:var(--muted)}
+.opt.right{border:2px solid var(--green);color:var(--green)}
+.opt.wrong{border:2px solid var(--red);color:var(--red);text-decoration:line-through}
+.opt:disabled{cursor:default}
+.big{font-family:Literata,Georgia,serif;font-size:clamp(1.6rem,7vw,2.3rem);text-align:center;margin:20px 0 4px}
+.big .main{border-bottom:3px solid var(--ink)}
+.fb{margin-top:16px}
+.verdict{font-weight:600;margin:0 0 6px}
+.verdict.ok{color:var(--green)} .verdict.no{color:var(--red)}
+.expl{margin:0 0 6px}
+.expl b{font-weight:600}
+.btn{font:inherit;font-weight:600;cursor:pointer;border-radius:10px;padding:12px 22px;background:var(--ink);color:var(--paper);border:0}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line);font-weight:500}
+.fb .btn{margin-top:10px}
+.stats{display:flex;justify-content:center;gap:22px;color:var(--muted);font-size:.88rem;margin-top:26px;flex-wrap:wrap}
+.stats b{color:var(--ink);font-weight:600}
+.empty{color:var(--muted);padding:40px 0;text-align:center}
+.small{color:var(--muted);font-size:.92rem}
+/* Теория */
+details.rules{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:12px;background:var(--paper)}
+details.rules summary{cursor:pointer;font-weight:600}
+details.rules ol,details.rules ul{padding-left:1.2em;margin:10px 0 4px}
+details.rules li{margin:6px 0}
+.tbl{width:100%;border-collapse:collapse;font-size:.94rem;margin:6px 0 4px}
+.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+.tbl th{font-weight:600}
+h2{font-family:Literata,Georgia,serif;font-weight:600;font-size:1.3rem;margin:26px 0 8px}
+.dl{list-style:none;margin:0;padding:0}
+.dl li{display:grid;grid-template-columns:12px 1fr;gap:2px 10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.dl .dw{font-family:Literata,Georgia,serif;font-size:1.05rem}
+.dot{width:8px;height:8px;border-radius:50%;margin-top:.65em;border:1.5px solid var(--line)}
+.dot.l{border-color:var(--red)} .dot.k{background:var(--green);border-color:var(--green)}
+.save{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:26px;background:var(--paper)}
+.save p{margin:0 0 10px;font-size:.92rem;color:var(--muted)}
+.save .btns{display:flex;gap:8px;flex-wrap:wrap}
+.msg{font-size:.9rem;margin:10px 0 0;color:var(--green)}
+.foot{margin-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:.85rem}
+#achToast{position:fixed;left:0;right:0;bottom:0;padding:0 16px calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;z-index:50}
+.ach-t{display:flex;gap:12px;align-items:center;max-width:420px;width:100%;background:var(--ink);color:var(--paper);border-radius:12px;padding:12px 16px;box-shadow:0 8px 28px rgba(0,0,0,.28);animation:achIn .4s ease-out;transition:opacity .4s,transform .4s}
+.ach-t b{font-weight:600}.ach-t small{opacity:.85}
+.ach-e{font-size:1.9rem;line-height:1}
+.ach-t.out{opacity:0;transform:translateY(12px)}
+@keyframes achIn{from{opacity:0;transform:translateY(18px) scale(.96)}}
+.achlink{float:right;color:var(--muted);text-decoration:none;font-size:.92rem;padding:4px 0;margin:4px 0 6px}
+.achlink:hover{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.ach-t{animation:none;transition:none}}
+.credit{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem;text-align:center}
+.credit a{color:var(--ink);font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
+.credit a:hover{border-bottom-color:var(--red)}
+.logo{position:relative;display:inline-grid;place-items:center;width:58px;height:58px;border-radius:15px;background:var(--ink);color:var(--paper);font-family:Literata,Georgia,serif;font-weight:600;font-size:36px;line-height:1;padding-top:6px;flex:none;text-decoration:none}
+.logo::after{content:"";position:absolute;left:54%;top:5px;width:5px;height:15px;border-radius:2px;background:var(--red);transform:rotate(38deg) scaleY(1);transform-origin:50% 100%}
+.logo.sm{width:26px;height:26px;border-radius:7px;font-size:16px;padding-top:3px}
+.logo.sm::after{top:2px;width:2.5px;height:7px;border-radius:1px}
+.logo.anim::after{transform:rotate(38deg) scaleY(0);animation:logoPen .35s ease-out .25s forwards}
+@keyframes logoPen{to{transform:rotate(38deg) scaleY(1)}}
+@media (prefers-reduced-motion:reduce){.logo.anim::after{animation:none;transform:rotate(38deg) scaleY(1)}}
+
+.achlink .lt{}
+@media (max-width:440px){.achlink .lt{display:none}.achlink{font-size:1.15rem}}
+[hidden]{display:none!important}
+@media (max-width:420px){.opts{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="./#oge"><span class="logo sm" aria-hidden="true">А</span>Все тренажёры</a>
+    <a class="achlink" href="ach.html" aria-label="Достижения">🏅<span class="lt"> Достижения</span></a>
+    <a class="achlink" href="stats.html" aria-label="Статистика" style="margin-right:16px">📊<span class="lt"> Статистика</span></a>
+    <h1><span class="exam-tag">ОГЭ</span>Виды связи</h1>
+    <p class="sub">Задание 9 ОГЭ по русскому: согласование, управление и примыкание в словосочетании.</p>
+    <div class="prog"><span id="progTxt">Освоено 0</span><div class="bar"><i id="progBar"></i></div></div>
+    <p class="warn" id="inapp" hidden>Сайт открыт внутри приложения, и прогресс здесь может пропасть. Откройте ссылку в Safari или Chrome: меню «⋯» → «Открыть в браузере».</p>
+  </header>
+
+  <nav role="tablist">
+    <button role="tab" id="t-train" aria-selected="true">Как на ОГЭ</button>
+    <button role="tab" id="t-type" aria-selected="false">Тип связи</button>
+    <button role="tab" id="t-dict" aria-selected="false">Теория</button>
+  </nav>
+
+  <section id="p-train">
+    <div class="chips" id="chips"></div>
+    <div id="stage"></div>
+    <div class="stats">
+      <span>Серия <b id="streak">0</b></span>
+      <span>Сегодня верно <b id="today">0 из 0</b></span>
+    </div>
+  </section>
+
+  <section id="p-type" hidden>
+    <p class="small" style="margin:0">Определите вид подчинительной связи. Главное слово подчёркнуто.</p>
+    <div id="tstage"></div>
+    <div class="stats"><span>Серия <b id="tstreak">0</b></span><span>Верно <b id="ttoday">0 из 0</b></span></div>
+  </section>
+
+  <section id="p-dict" hidden>
+    <details class="rules" open>
+      <summary>Три вида подчинительной связи</summary>
+      <table class="tbl">
+        <tr><th>Связь</th><th>Как узнать</th><th>Пример</th></tr>
+        <tr><td><b>Согласование</b></td><td>Зависимое слово меняется вместе с главным: род, число, падеж. Зависимое — прилагательное, причастие, порядковое числительное, местоимение-прилагательное.</td><td>заячьи уши — заячьих ушей</td></tr>
+        <tr><td><b>Управление</b></td><td>Зависимое слово стоит в определённом падеже и не меняется, когда меняется главное. Зависимое — существительное или местоимение, часто с предлогом.</td><td>уши зайца — ушам зайца</td></tr>
+        <tr><td><b>Примыкание</b></td><td>Зависимое слово неизменяемое и связано по смыслу: наречие, деепричастие, инфинитив, притяжательные его/её/их.</td><td>говорил весело</td></tr>
+      </table>
+    </details>
+    <details class="rules">
+      <summary>Как решать задание 9</summary>
+      <ol>
+        <li>Найдите главное слово: от него задаётся вопрос к зависимому. Главное слово при замене не меняется.</li>
+        <li>Меняйте только зависимое слово: существительное ↔ прилагательное (дом из кирпича → кирпичный дом), существительное с предлогом ↔ наречие (сказал с улыбкой → сказал улыбаясь, говорил с волнением → говорил взволнованно).</li>
+        <li>Следите за формой и орфографией: прилагательное согласуйте с главным словом в роде, числе и падеже.</li>
+        <li>В бланк пишите без пробелов, порядок слов не важен: «заячьиуши» или «ушизаячьи».</li>
+      </ol>
+    </details>
+    <div id="dict"></div>
+    <div class="save">
+      <p>Прогресс хранится на этом устройстве. Чтобы не потерять его или перенести на другой телефон, скопируйте код и сохраните, например, в заметках.</p>
+      <div class="btns">
+        <button class="btn" id="exportBtn">Скопировать код прогресса</button>
+        <button class="btn ghost" id="importBtn">Восстановить по коду</button>
+      </div>
+      <p class="msg" id="saveMsg" hidden></p>
+    </div>
+    <div class="foot">
+      <span>Формат — по методическим рекомендациям ФИПИ к ОГЭ 2026.</span>
+      <button class="btn ghost" id="reset">Сбросить прогресс</button>
+    </div>
+  </section>
+  <p class="credit">Автор тренажёров — <a href="https://t.me/clwyxi" target="_blank" rel="noopener">@clwyxi</a> в Telegram</p>
+</div>
+
+<script>
+/* ===== Достижения (общий модуль для всех страниц) ===== */
+const ACH=(()=>{
+  const K='ege-ach-v1';
+  const L=[
+    {id:'a4_1',g:'ЕГЭ · задание 4',e:'🎯',t:'Первый удар',d:'Дать первый верный ответ в тренажёре ударений',f:(s,c)=>(c.ok4||0)>=1},
+    {id:'a4_10',g:'ЕГЭ · задание 4',e:'🎂',t:'Не тортЫ, а тОрты',d:'Выучить 10 слов',f:s=>s.s4>=10},
+    {id:'a4_50',g:'ЕГЭ · задание 4',e:'🛠️',t:'Ударник орфоэпического труда',d:'Выучить 50 слов',f:s=>s.s4>=50},
+    {id:'a4_100',g:'ЕГЭ · задание 4',e:'🥊',t:'Сто ударов — ни одного синяка',d:'Выучить 100 слов',f:s=>s.s4>=100},
+    {id:'a4_all',g:'ЕГЭ · задание 4',e:'📖',t:'Ходячий словник',d:'Выучить все 219 слов',f:s=>s.s4>=219},
+    {id:'a4_st',g:'ЕГЭ · задание 4',e:'📞',t:'ЗвонИт, а не звОнит',d:'20 верных ответов подряд',f:(s,c)=>(c.best4||0)>=20},
+    {id:'a4_ex',g:'ЕГЭ · задание 4',e:'🍀',t:'Четвёртый — не лишний',d:'Решить без ошибок 10 заданий «как на ЕГЭ»',f:(s,c)=>(c.ex4||0)>=10},
+    {id:'a5_1',g:'ЕГЭ · задание 5',e:'🧥',t:'Надел, а не одел',d:'Дать первый верный ответ в тренажёре паронимов',f:(s,c)=>(c.ok5||0)>=1},
+    {id:'a5_25',g:'ЕГЭ · задание 5',e:'🎩',t:'Дипломат, а не дипломант',d:'Освоить 25 словосочетаний',f:s=>s.s5>=25},
+    {id:'a5_100',g:'ЕГЭ · задание 5',e:'📵',t:'Абонент вне зоны ошибок',d:'Освоить 100 словосочетаний',f:s=>s.s5>=100},
+    {id:'a5_all',g:'ЕГЭ · задание 5',e:'💥',t:'Эффектно и эффективно',d:'Освоить все словосочетания',f:s=>s.s5>=s.t5&&s.t5>0},
+    {id:'a5_st',g:'ЕГЭ · задание 5',e:'😇',t:'Ни одного проступка',d:'15 верных ответов подряд',f:(s,c)=>(c.best5||0)>=15},
+    {id:'a5_ex',g:'ЕГЭ · задание 5',e:'✍️',t:'Исправитель паронимов',d:'Решить верно 10 заданий «как на ЕГЭ»',f:(s,c)=>(c.ex5||0)>=10},
+    {id:'a9_1',g:'ЕГЭ · задание 9',e:'🔤',t:'Буква в яблочко',d:'Дать первый верный ответ в тренажёре корней',f:(s,c)=>(c.ok9||0)>=1},
+    {id:'a9_25',g:'ЕГЭ · задание 9',e:'☀️',t:'ЗагОрел, но не сгорел',d:'Освоить 25 слов',f:s=>s.s9>=25},
+    {id:'a9_100',g:'ЕГЭ · задание 9',e:'🌱',t:'Растение без ростка сомнений',d:'Освоить 100 слов',f:s=>s.s9>=100},
+    {id:'a9_all',g:'ЕГЭ · задание 9',e:'🌳',t:'Корень зла найден',d:'Освоить все слова тренажёра',f:s=>s.s9>=s.t9&&s.t9>0},
+    {id:'a9_st',g:'ЕГЭ · задание 9',e:'🦘',t:'Скачок без ошибок',d:'15 верных ответов подряд',f:(s,c)=>(c.best9||0)>=15},
+    {id:'a9_ex',g:'ЕГЭ · задание 9',e:'🎯',t:'Одна и та же буква',d:'Решить верно 10 заданий «как на ЕГЭ»',f:(s,c)=>(c.ex9||0)>=10},
+    {id:'a22_1',g:'ЕГЭ · задание 22',e:'🌟',t:'Первая метафора',d:'Дать первый верный ответ в тренажёре выразительности',f:(s,c)=>(c.ok22||0)>=1},
+    {id:'a22_10',g:'ЕГЭ · задание 22',e:'🥾',t:'Тропинка',d:'Освоить 10 примеров',f:s=>s.s22>=10},
+    {id:'a22_50',g:'ЕГЭ · задание 22',e:'🎭',t:'Мильон терзаний позади',d:'Освоить 50 примеров',f:s=>s.s22>=50},
+    {id:'a22_all',g:'ЕГЭ · задание 22',e:'🪶',t:'Сам себе Пушкин',d:'Освоить все 108 примеров',f:s=>s.s22>=108},
+    {id:'a22_st',g:'ЕГЭ · задание 22',e:'🔁',t:'Анафора! Анафора! Анафора!',d:'15 верных ответов подряд',f:(s,c)=>(c.best22||0)>=15},
+    {id:'a22_ex',g:'ЕГЭ · задание 22',e:'✌️',t:'Два балла из двух',d:'Решить «как на ЕГЭ» без единой ошибки',f:(s,c)=>(c.ex22||0)>=1},
+    {id:'o6_1',g:'ОГЭ · задание 6',e:'🔍',t:'Объяснительная записка',d:'Дать первый верный ответ в тренажёре задания 6',f:(s,c)=>(c.oko6||0)>=1},
+    {id:'o6_50',g:'ОГЭ · задание 6',e:'⚖️',t:'Справедливый судья',d:'Освоить 50 утверждений',f:s=>s.so6>=50},
+    {id:'o6_all',g:'ОГЭ · задание 6',e:'📚',t:'Ходячий справочник',d:'Освоить все утверждения',f:s=>s.so6>=s.to6&&s.to6>0},
+    {id:'o6_st',g:'ОГЭ · задание 6',e:'🎬',t:'Не верю!',d:'15 верных ответов подряд',f:(s,c)=>(c.besto6||0)>=15},
+    {id:'o6_ex',g:'ОГЭ · задание 6',e:'📝',t:'Верное объяснение',d:'Решить верно 10 заданий «как на ОГЭ»',f:(s,c)=>(c.exo6||0)>=10},
+    {id:'o9_1',g:'ОГЭ · задание 9',e:'🐰',t:'Заячьи уши',d:'Сделать первое верное преобразование',f:(s,c)=>(c.oko9||0)>=1},
+    {id:'o9_25',g:'ОГЭ · задание 9',e:'🔗',t:'Связной',d:'Освоить 25 словосочетаний',f:s=>s.so9>=25},
+    {id:'o9_all',g:'ОГЭ · задание 9',e:'🪢',t:'Мастер связей',d:'Освоить все словосочетания',f:s=>s.so9>=s.to9&&s.to9>0},
+    {id:'o9_st',g:'ОГЭ · задание 9',e:'⛓️',t:'Согласен, управляю, примыкаю',d:'15 верных ответов подряд',f:(s,c)=>(c.besto9||0)>=15},
+    {id:'g_all',g:'Весь сайт',e:'🧰',t:'Многостаночник',d:'Освоить хотя бы по 10 в каждом тренажёре ЕГЭ',f:s=>s.s4>=10&&s.s5>=10&&s.s9>=10&&s.s22>=10},
+    {id:'g_oge',g:'Весь сайт',e:'🎓',t:'Девятый вал',d:'Освоить хотя бы по 10 в каждом тренажёре ОГЭ',f:s=>s.so6>=10&&s.so9>=10},
+    {id:'g_500',g:'Весь сайт',e:'🏃',t:'Марафонец',d:'Дать 500 ответов во всех тренажёрах',f:(s,c)=>(c.ans||0)>=500},
+    {id:'g_night',g:'Весь сайт',e:'🦉',t:'Сова-филолог',d:'Позаниматься после 23:00',f:(s,c)=>!!c.night,hidden:true},
+    {id:'g_morning',g:'Весь сайт',e:'🐦',t:'Ранняя пташка',d:'Позаниматься до 7 утра',f:(s,c)=>!!c.morning,hidden:true}
+  ];
+  function load(){try{const v=JSON.parse(localStorage.getItem(K));if(v&&v.u&&v.c)return v;}catch(e){}return {u:{},c:{}};}
+  function store(st){try{localStorage.setItem(K,JSON.stringify(st));}catch(e){}}
+  function cnt(key,need){try{const p=JSON.parse(localStorage.getItem(key)||'{}');return Object.values(p.w||{}).filter(x=>x.b>=need).length;}catch(e){return 0;}}
+  function tot(key){try{return +(localStorage.getItem(key)||0);}catch(e){return 0;}}
+  function stats(){
+    return {s4:cnt('udarenie-ege-2026-v1',3),s22:cnt('vyrazitelnost-ege22-v1',2),
+      s5:cnt('paronimy-ege5-v1',2),t5:tot('paronimy-ege5-total'),
+      s9:cnt('korni-ege9-v1',2),t9:tot('korni-ege9-total'),
+      so6:cnt('oge6-v1',2),to6:tot('oge6-total'),
+      so9:cnt('oge9-v1',2),to9:tot('oge9-total')};
+  }
+  function check(st){const s=stats(),fresh=[];L.forEach(a=>{if(!st.u[a.id]&&a.f(s,st.c)){st.u[a.id]=Date.now();fresh.push(a);}});return fresh;}
+  function toast(a){
+    let w=document.getElementById('achToast');
+    if(!w){w=document.createElement('div');w.id='achToast';w.setAttribute('aria-live','polite');document.body.appendChild(w);}
+    const el=document.createElement('div');el.className='ach-t';
+    el.innerHTML=`<span class="ach-e" aria-hidden="true">${a.e}</span><span><b>Достижение: ${a.t}</b><br><small>${a.d}</small></span>`;
+    w.appendChild(el);
+    setTimeout(()=>el.classList.add('out'),4200);setTimeout(()=>el.remove(),4700);
+  }
+  function event(ev){
+    const st=load(),c=st.c,tr=ev.tr;
+    if(typeof ev.ok==='boolean'){
+      c.ans=(c.ans||0)+1;
+      const d=new Date(),dk=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+      c.days=c.days||{};const dd=c.days[dk]||(c.days[dk]=[0,0,{}]);
+      dd[0]++;if(ev.ok)dd[1]++;dd[2][tr]=(dd[2][tr]||0)+1;
+      const ks=Object.keys(c.days).sort();while(ks.length>180)delete c.days[ks.shift()];
+      if(ev.ok)c['ok'+tr]=(c['ok'+tr]||0)+1;
+      if((ev.streak||0)>(c['best'+tr]||0))c['best'+tr]=ev.streak;
+      const h=new Date().getHours();
+      if(h>=23||h<4)c.night=1;
+      if(h>=4&&h<7)c.morning=1;
+    }
+    if(ev.full)c['ex'+tr]=(c['ex'+tr]||0)+1;
+    const fresh=check(st);store(st);
+    fresh.forEach((a,i)=>setTimeout(()=>toast(a),i*2800));
+  }
+  function all(){const st=load();check(st);store(st);return L.map(a=>Object.assign({},a,{got:!!st.u[a.id],when:st.u[a.id]}));}
+  function raw(){return load();}
+  return {event,all,raw};
+})();
+
+/* исходное словосочетание (главное слово в *звёздочках*)|вид связи|целевой вид|ответы через «/» */
+const RAW=`*уши* зайца|у|с|заячьи уши
+*дом* из кирпича|у|с|кирпичный дом
+*сок* из яблок|у|с|яблочный сок
+*стол* из дерева|у|с|деревянный стол
+*шарф* из шерсти|у|с|шерстяной шарф
+*кольцо* из серебра|у|с|серебряное кольцо
+*ворота* из железа|у|с|железные ворота
+*варенье* из вишни|у|с|вишнёвое варенье
+*песни* соловья|у|с|соловьиные песни
+*хвост* лисы|у|с|лисий хвост
+*след* медведя|у|с|медвежий след
+*вой* волка|у|с|волчий вой
+*лапы* кошки|у|с|кошачьи лапы
+*голос* мамы|у|с|мамин голос
+*свет* луны|у|с|лунный свет
+*блеск* звёзд|у|с|звёздный блеск
+*ветка* рябины|у|с|рябиновая ветка
+*лес* из сосен|у|с|сосновый лес
+*огни* города|у|с|городские огни
+*жизнь* в городе|у|с|городская жизнь
+*цветы* в поле|у|с|полевые цветы
+*дорога* в горах|у|с|горная дорога
+*прогулка* по лесу|у|с|лесная прогулка
+*путешествие* по морю|у|с|морское путешествие
+*вечер* зимы|у|с|зимний вечер
+*тишина* ночи|у|с|ночная тишина
+*двор* школы|у|с|школьный двор
+*воздух* моря|у|с|морской воздух
+*день* без ветра|у|с|безветренный день
+*ночь* без луны|у|с|безлунная ночь
+*человек* с талантом|у|с|талантливый человек
+*улыбка* ребёнка|у|с|детская улыбка
+заячьи *уши*|с|у|уши зайца
+кирпичный *дом*|с|у|дом из кирпича
+деревянный *стол*|с|у|стол из дерева
+серебряное *кольцо*|с|у|кольцо из серебра
+золотое *кольцо*|с|у|кольцо из золота
+шерстяные *носки*|с|у|носки из шерсти
+вишнёвое *варенье*|с|у|варенье из вишни/варенье из вишен
+лунный *свет*|с|у|свет луны
+мамин *голос*|с|у|голос мамы
+школьный *двор*|с|у|двор школы
+морской *воздух*|с|у|воздух моря
+ночная *тишина*|с|у|тишина ночи
+лисий *хвост*|с|у|хвост лисы
+медвежья *берлога*|с|у|берлога медведя
+городские *огни*|с|у|огни города
+книжная *полка*|с|у|полка для книг
+сосновый *бор*|с|у|бор из сосен
+*сказал* шутя|п|у|сказал в шутку
+*ответил* грубо|п|у|ответил с грубостью
+*работать* усердно|п|у|работать с усердием
+*смотрел* внимательно|п|у|смотрел с вниманием
+*сделал* осторожно|п|у|сделал с осторожностью
+радостно *встретил*|п|у|встретил с радостью
+*ответил* вежливо|п|у|ответил с вежливостью
+*сказал* злобно|п|у|сказал со злобой
+*говорил* строго|п|у|говорил со строгостью
+*слушал* удивлённо|п|у|слушал с удивлением
+*посмотрел* тревожно|п|у|посмотрел с тревогой
+*ждал* терпеливо|п|у|ждал с терпением
+*говорил* восторженно|п|у|говорил с восторгом
+*говорил* с волнением|у|п|говорил взволнованно
+*сказал* с улыбкой|у|п|сказал улыбаясь
+*посмотрел* с удивлением|у|п|посмотрел удивлённо
+*встретил* с радостью|у|п|встретил радостно
+*работал* с усердием|у|п|работал усердно
+*ответил* с гордостью|у|п|ответил гордо
+*сказал* с грустью|у|п|сказал грустно
+*говорил* с уверенностью|у|п|говорил уверенно
+*шёл* с осторожностью|у|п|шёл осторожно
+*отнёсся* с равнодушием|у|п|отнёсся равнодушно
+*шагал* с бодростью|у|п|шагал бодро
+*слушал* с интересом|у|п|слушал заинтересованно
+*кричал* с испугом|у|п|кричал испуганно
+*ответил* с раздражением|у|п|ответил раздражённо`;
+
+const T={с:'согласование',у:'управление',п:'примыкание'};
+const HINT={
+  'у>с':'Замените зависимое существительное прилагательным, которое согласуется с главным словом: уши зайца → заячьи уши.',
+  'с>у':'Замените прилагательное существительным (часто с предлогом ИЗ, ДЛЯ): кирпичный дом → дом из кирпича.',
+  'п>у':'Замените наречие существительным с предлогом С: говорил весело → говорил с весельем.',
+  'у>п':'Замените существительное с предлогом наречием или деепричастием: говорил с волнением → говорил взволнованно.'
+};
+const W=[];
+RAW.trim().split('\n').forEach(l=>{
+  let [ph,from,to,ans]=l.split('|');
+  if(!ph||!T[from]||!T[to])return;
+  const main=(ph.match(/\*(.+?)\*/)||[])[1];if(!main)return;
+  W.push({id:ph+'>'+to,ph,from,to,main,ans:ans.split('/').map(a=>a.trim())});
+});
+try{localStorage.setItem('oge9-total',String(W.length));}catch(e){}
+
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const plain=ph=>ph.replace(/\*/g,'');
+const under=ph=>esc(ph).replace(/\*(.+?)\*/,'<span class="main">$1</span>');
+const norm=s=>s.toLowerCase().replace(/ё/g,'е').replace(/[^а-я-]/g,'');
+function accepted(x){
+  const out=new Set();
+  x.ans.forEach(a=>{const ws=a.split(' ');out.add(norm(ws.join('')));
+    const i=ws.indexOf(x.main);if(i>=0){const rest=ws.filter((_,k)=>k!==i);out.add(norm(rest.join('')+x.main));out.add(norm(x.main+rest.join('')));}});
+  return out;
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+/* Хранилище */
+const KEY='oge9-v1';
+let S={w:{},t:{ok:0,all:0}};
+try{const r=localStorage.getItem(KEY);if(r){const p=JSON.parse(r);S.w=p.w||{};S.t=p.t||{ok:0,all:0};}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function st(x){return S.w[x.id]||(S.w[x.id]={b:0,ok:0,bad:0});}
+function mark(x,ok){const s=st(x);if(ok){s.ok++;s.b=Math.min(5,s.b+1);}else{s.bad++;s.b=0;}save();updateProg();}
+function known(){return W.filter(x=>{const s=S.w[x.id];return s&&s.b>=2;}).length;}
+function updateProg(){
+  const k=known();
+  document.getElementById('progTxt').textContent=`Освоено ${k} из ${W.length} словосочетаний`;
+  document.getElementById('progBar').style.width=(k/W.length*100)+'%';
+}
+const WT=[10,6,3,2,1,.5];
+function pickFrom(list,exclude){
+  let cand=list.filter(x=>!exclude.includes(x.id));if(!cand.length)cand=list;
+  let tot=0;const ws=cand.map(x=>{const s=S.w[x.id];const v=s?WT[s.b]:8;tot+=v;return v;});
+  let r=Math.random()*tot;for(let i=0;i<cand.length;i++){r-=ws[i];if(r<=0)return cand[i];}
+  return cand[cand.length-1];
+}
+
+/* Табы */
+const tabs=['train','type','dict'];
+tabs.forEach(t=>{document.getElementById('t-'+t).onclick=()=>{
+  tabs.forEach(x=>{document.getElementById('t-'+x).setAttribute('aria-selected',x===t);document.getElementById('p-'+x).hidden=x!==t;});
+  if(t==='dict')renderDict();
+  if(t==='type'&&!tcur)nextType();
+};});
+
+/* Как на ОГЭ */
+let filt='all',cur=null,answered=false,recent=[],queue=[],streak=0,todayOk=0,todayAll=0;
+const FILTERS=[['all','Все'],['у>с','Управление → согласование'],['с>у','Согласование → управление'],['п>у','Примыкание → управление'],['у>п','Управление → примыкание'],['bad','Мои ошибки']];
+function renderChips(){
+  document.getElementById('chips').innerHTML=FILTERS.map(([k,l])=>`<button class="chip" data-f="${k}" aria-pressed="${k===filt}">${l}</button>`).join('');
+  document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{filt=b.dataset.f;queue=[];recent=[];renderChips();nextCard();});
+}
+function pool(){
+  if(filt==='all')return W;
+  if(filt==='bad')return W.filter(x=>{const s=S.w[x.id];return s&&s.bad>0&&s.b<2;});
+  return W.filter(x=>x.from+'>'+x.to===filt);
+}
+function nextCard(){
+  queue.forEach(q=>q.d--);
+  const p=pool(),stage=document.getElementById('stage');
+  if(!p.length){stage.innerHTML='<p class="empty">Здесь появятся словосочетания, в которых вы ошибались. Пока их нет — потренируйтесь на всех.</p>';return;}
+  const qi=queue.findIndex(q=>q.d<=0&&p.some(x=>x.id===q.id));
+  if(qi>=0){cur=W.find(x=>x.id===queue[qi].id);queue.splice(qi,1);}else cur=pickFrom(p,recent);
+  recent.push(cur.id);if(recent.length>12)recent.shift();
+  answered=false;
+  stage.innerHTML=`<div class="task9">Замените словосочетание <span class="ph">«${esc(plain(cur.ph))}»</span>, построенное на основе связи <span class="kind">${T[cur.from]}</span>, синонимичным словосочетанием со связью <span class="kind to">${T[cur.to]}</span>. Напишите получившееся словосочетание.
+    <div class="ansrow"><input class="ans" id="ans" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Ответ" aria-label="Ответ"><button class="btn" id="chk">Проверить</button></div>
+    <button class="hint" id="hintBtn">Подсказка</button><div class="hintbox" id="hintBox" hidden>${esc(HINT[cur.from+'>'+cur.to]||'')} Главное слово — «${esc(cur.main)}», оно не меняется.</div></div>
+    <div class="fb" id="fb"></div>`;
+  document.getElementById('chk').onclick=check;
+  document.getElementById('ans').addEventListener('keydown',e=>{if(e.key==='Enter')check();});
+  document.getElementById('hintBtn').onclick=()=>{document.getElementById('hintBox').hidden=false;};
+}
+function check(){
+  if(answered){nextCard();document.getElementById('ans').focus();return;}
+  const inp=document.getElementById('ans');const v=norm(inp.value);
+  if(!v){document.getElementById('fb').innerHTML='<p class="small">Впишите словосочетание.</p>';return;}
+  answered=true;
+  const ok=accepted(cur).has(v);
+  inp.disabled=true;inp.classList.add(ok?'okv':'badv');
+  mark(cur,ok);todayAll++;
+  if(ok){todayOk++;streak++;}else{streak=0;queue.push({id:cur.id,d:4});}
+  document.getElementById('streak').textContent=streak;
+  document.getElementById('today').textContent=`${todayOk} из ${todayAll}`;
+  ACH.event({tr:'o9',ok,streak});
+  const blank=cur.ans[0].replace(/\s+/g,'');
+  document.getElementById('fb').innerHTML=`
+    <p class="verdict ${ok?'ok':'no'}">${ok?'Верно':'Не совсем. Словосочетание вернётся через четыре карточки'}</p>
+    <p class="expl"><b>Ответ:</b> ${cur.ans.map(esc).join(' или ')}. В бланк: <b>${esc(blank)}</b></p>
+    <p class="expl small">${esc(HINT[cur.from+'>'+cur.to]||'')}</p>
+    <button class="btn" id="next">Следующее словосочетание</button>`;
+  document.getElementById('chk').textContent='Дальше';
+  const n=document.getElementById('next');n.onclick=nextCard;n.focus({preventScroll:true});
+}
+
+/* Тип связи */
+const TP=[];W.forEach(x=>{if(!TP.some(t=>t.ph===x.ph))TP.push({ph:x.ph,k:x.from});});
+let tcur=null,tans=false,tstreak=0,tok=0,tall=0,trecent=[];
+function nextType(){
+  let c;do{c=TP[Math.floor(Math.random()*TP.length)];}while(trecent.includes(c.ph)&&TP.length>10);
+  trecent.push(c.ph);if(trecent.length>10)trecent.shift();
+  tcur=c;tans=false;
+  document.getElementById('tstage').innerHTML=`<div class="big">${under(c.ph)}</div>
+    <div class="opts">${['с','у','п'].map(k=>`<button class="opt" data-k="${k}">${T[k]}</button>`).join('')}</div><div class="fb" id="tfb"></div>`;
+  document.querySelectorAll('#tstage .opt').forEach(b=>b.onclick=()=>tAnswer(b.dataset.k));
+}
+const WHY={с:'зависимое слово согласуется с главным в роде, числе и падеже',у:'зависимое слово стоит в определённом падеже и не меняется вместе с главным',п:'зависимое слово неизменяемое и связано с главным только по смыслу'};
+function tAnswer(k){
+  if(tans)return;tans=true;
+  const ok=k===tcur.k;
+  document.querySelectorAll('#tstage .opt').forEach(b=>{b.disabled=true;if(b.dataset.k===tcur.k)b.classList.add('right');else if(b.dataset.k===k)b.classList.add('wrong');});
+  tall++;if(ok){tok++;tstreak++;}else tstreak=0;
+  S.t.all++;if(ok)S.t.ok++;save();
+  ACH.event({tr:'o9t',ok,streak:tstreak});
+  document.getElementById('tstreak').textContent=tstreak;
+  document.getElementById('ttoday').textContent=`${tok} из ${tall}`;
+  document.getElementById('tfb').innerHTML=`<p class="verdict ${ok?'ok':'no'}">${ok?'Верно':'Это '+T[tcur.k]}</p><p class="expl">${cap(T[tcur.k])}: ${WHY[tcur.k]}.</p><button class="btn" id="tnext">Дальше</button>`;
+  const n=document.getElementById('tnext');n.onclick=nextType;n.focus({preventScroll:true});
+}
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+
+/* Теория: список */
+function renderDict(){
+  let html='';
+  for(const [k,l] of FILTERS.slice(1,5)){
+    const list=W.filter(x=>x.from+'>'+x.to===k);if(!list.length)continue;
+    html+=`<h2>${l}</h2><ul class="dl">`+list.map(x=>{const s=S.w[x.id];const d=!s?'':(s.b>=2?'k':(s.bad>0?'l':''));
+      return `<li><i class="dot ${d}"></i><span class="dw">${esc(plain(x.ph))} → ${x.ans.map(esc).join(' / ')}</span></li>`;}).join('')+'</ul>';
+  }
+  document.getElementById('dict').innerHTML=html;
+}
+document.getElementById('reset').onclick=()=>{
+  if(!confirm('Сбросить прогресс по заданию 9 ОГЭ на этом устройстве?'))return;
+  S={w:{},t:{ok:0,all:0}};save();updateProg();renderDict();
+  streak=todayOk=todayAll=0;queue=[];
+  document.getElementById('streak').textContent='0';
+  document.getElementById('today').textContent='0 из 0';
+};
+
+/* Сохранность прогресса */
+try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(e){}
+if(/Telegram|VKClient|vkontakte|Instagram|FBAN|FBAV|OKApp|MailRuApp/i.test(navigator.userAgent))document.getElementById('inapp').hidden=false;
+function showMsg(t,bad){const m=document.getElementById('saveMsg');m.textContent=t;m.style.color=bad?'var(--red)':'var(--green)';m.hidden=false;}
+document.getElementById('exportBtn').onclick=async()=>{
+  const w=[];W.forEach((x,i)=>{const s=S.w[x.id];if(s&&(s.ok||s.bad))w.push([i,s.b,s.ok,s.bad]);});
+  const code='OG9-'+btoa(JSON.stringify({w,t:[S.t.ok,S.t.all]}));
+  try{await navigator.clipboard.writeText(code);showMsg('Код скопирован. Вставьте его в заметки или отправьте себе.');}
+  catch(e){prompt('Скопируйте этот код и сохраните его:',code);}
+};
+document.getElementById('importBtn').onclick=()=>{
+  const code=(prompt('Вставьте код прогресса:')||'').trim();if(!code)return;
+  try{
+    if(!code.startsWith('OG9-'))throw 0;
+    const d=JSON.parse(atob(code.slice(4)));const w={};
+    d.w.forEach(([i,b,ok,bad])=>{if(W[i])w[W[i].id]={b,ok,bad};});
+    S={w,t:{ok:(d.t||[])[0]||0,all:(d.t||[])[1]||0}};save();updateProg();renderDict();
+    showMsg('Прогресс восстановлен.');
+  }catch(e){showMsg('Код не подошёл. Скопируйте его целиком, начиная с OG9-.',true);}
+};
+
+renderChips();updateProg();nextCard();
+</script>
+</body>
+</html>
